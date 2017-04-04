@@ -91,6 +91,11 @@ class ViewControllerToDoTask: UIViewController, UITableViewDataSource , UITableV
 
     }
     
+    @IBAction func deleteTaskTapped(_ sender: UIButton) {
+        
+    }
+    
+    
     //Navigation
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {

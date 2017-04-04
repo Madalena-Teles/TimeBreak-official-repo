@@ -11,6 +11,7 @@
 		C517CCDD1E2C4AE800B0E407 /* ViewControllerToDoTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = C517CCDC1E2C4AE800B0E407 /* ViewControllerToDoTask.swift */; };
 		C517CCDF1E2C4B2700B0E407 /* ViewControllerAddTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = C517CCDE1E2C4B2700B0E407 /* ViewControllerAddTask.swift */; };
 		C517CCE11E2C4B4200B0E407 /* ViewControllerTimer.swift in Sources */ = {isa = PBXBuildFile; fileRef = C517CCE01E2C4B4200B0E407 /* ViewControllerTimer.swift */; };
+		C5AC7CB81E943A490021E6D0 /* CategoryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5AC7CB71E943A490021E6D0 /* CategoryTableViewCell.swift */; };
 		C5BD304A1E6F52830007E954 /* TaskTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5BD30491E6F52830007E954 /* TaskTableViewCell.swift */; };
 		C5EACD4B1DE4E07600B47342 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5EACD4A1DE4E07600B47342 /* AppDelegate.swift */; };
 		C5EACD501DE4E07600B47342 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C5EACD4E1DE4E07600B47342 /* Main.storyboard */; };
@@ -24,6 +25,7 @@
 		C517CCDC1E2C4AE800B0E407 /* ViewControllerToDoTask.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewControllerToDoTask.swift; sourceTree = "<group>"; };
 		C517CCDE1E2C4B2700B0E407 /* ViewControllerAddTask.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewControllerAddTask.swift; sourceTree = "<group>"; };
 		C517CCE01E2C4B4200B0E407 /* ViewControllerTimer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewControllerTimer.swift; sourceTree = "<group>"; };
+		C5AC7CB71E943A490021E6D0 /* CategoryTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CategoryTableViewCell.swift; sourceTree = "<group>"; };
 		C5BD30491E6F52830007E954 /* TaskTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TaskTableViewCell.swift; sourceTree = "<group>"; };
 		C5EACD471DE4E07600B47342 /* TimeBreak 1.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "TimeBreak 1.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		C5EACD4A1DE4E07600B47342 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -70,6 +72,7 @@
 				C517CCE01E2C4B4200B0E407 /* ViewControllerTimer.swift */,
 				C517CCDE1E2C4B2700B0E407 /* ViewControllerAddTask.swift */,
 				C5BD30491E6F52830007E954 /* TaskTableViewCell.swift */,
+				C5AC7CB71E943A490021E6D0 /* CategoryTableViewCell.swift */,
 				C5EACD4E1DE4E07600B47342 /* Main.storyboard */,
 				C5EACD541DE4E07600B47342 /* Assets.xcassets */,
 				C5EACD591DE4E07600B47342 /* Info.plist */,
@@ -159,6 +162,7 @@
 				C517CCE11E2C4B4200B0E407 /* ViewControllerTimer.swift in Sources */,
 				C5EACD4B1DE4E07600B47342 /* AppDelegate.swift in Sources */,
 				C517CCDF1E2C4B2700B0E407 /* ViewControllerAddTask.swift in Sources */,
+				C5AC7CB81E943A490021E6D0 /* CategoryTableViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

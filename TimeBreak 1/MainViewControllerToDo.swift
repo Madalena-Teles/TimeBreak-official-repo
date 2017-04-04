@@ -8,7 +8,7 @@
 
 import UIKit
 
-class MainViewControllerToDo: UIViewController, UITableViewDataSource , UITableViewDelegate {
+class MainViewControllerToDo: UIViewController, UITableViewDataSource , UITableViewDelegate, UIGestureRecognizerDelegate {
     
     var categoryArray: Array<String> = Array()
     var categoryToPass = ""
@@ -24,6 +24,21 @@ class MainViewControllerToDo: UIViewController, UITableViewDataSource , UITableV
         super.viewDidLoad()
         tableView.delegate = self
         tableView.dataSource = self
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(MainViewControllerToDo.deleteCategory))
+        tableView.addGestureRecognizer(tapGesture)
+        tapGesture.delegate = self
+    }
+    
+    func deleteCategory(recognizer: UITapGestureRecognizer){
+        if recognizer.state == UIGestureRecognizerState.ended {
+            let tapLocation = recognizer.location(in: self.tableView)
+            if let tapIndexPath = self.tableView.indexPathForRow(at: tapLocation) {
+                if let tappedCell = self.tableView.cellForRow(at: tapIndexPath) as? CategoryTableViewCell {
+                    var indexToDelete = tappedCell./// find the index of the table view cell, remove the item from the array at that same index, refresh the array
+            }
+        
+            }
+        }
     }
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -60,7 +75,7 @@ class MainViewControllerToDo: UIViewController, UITableViewDataSource , UITableV
         self.present(alert, animated: true, completion: nil)
         }
     }
-
+    
       override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         
         if (segue.identifier == "categorySegue"){
