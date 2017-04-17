@@ -8,7 +8,7 @@
 
 import UIKit
 
-class MainViewControllerToDo: UIViewController, UITableViewDataSource , UITableViewDelegate, UIGestureRecognizerDelegate {
+class MainViewControllerToDo: UIViewController, UITableViewDataSource , UITableViewDelegate, UIGestureRecognizerDelegate, UIAlertController {
     
     var categoryArray: Array<String> = Array()
     var categoryToPass = ""
@@ -33,11 +33,18 @@ class MainViewControllerToDo: UIViewController, UITableViewDataSource , UITableV
         if recognizer.state == UIGestureRecognizerState.ended {
             let tapLocation = recognizer.location(in: self.tableView)
             if let tapIndexPath = self.tableView.indexPathForRow(at: tapLocation) {
-                if let tappedCell = self.tableView.cellForRow(at: tapIndexPath) as? CategoryTableViewCell {
-                    var indexToDelete = tappedCell./// find the index of the table view cell, remove the item from the array at that same index, refresh the array
+                let indextoDelete = tapIndexPath.row
+                self.categoryArray.remove(at:indextoDelete)
+                tableView.reloadData()
             }
         
             }
+        let alert = UIAlertController(title: "Are you sure you want to delete this category?", message: "With this", preferredStyle: .actionSheet)
+        alert.addAction(UIAlertAction(title: "A thing", style: .default) { action in
+            // perhaps use action.title here
+            self.present(alert, animated: true)
+        })
+        
         }
     }
 
@@ -75,8 +82,8 @@ class MainViewControllerToDo: UIViewController, UITableViewDataSource , UITableV
         self.present(alert, animated: true, completion: nil)
         }
     }
-    
-      override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+
+      func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         
         if (segue.identifier == "categorySegue"){
             let destViewController = segue.destination as! ViewControllerToDoTask
@@ -88,5 +95,5 @@ class MainViewControllerToDo: UIViewController, UITableViewDataSource , UITableV
         }
     }
 }
-}
+
 
