@@ -10,7 +10,7 @@ import UIKit
 
 // Receiving ViewController
 
-class ViewControllerToDoTask: UIViewController, UITableViewDataSource , UITableViewDelegate, DataSentDelegate {
+class ViewControllerToDoTask: UIViewController, UITableViewDataSource , UITableViewDelegate, DataSentDelegate, UIGestureRecognizerDelegate {
     
     var taskTimeToPass = 1800
     var nameToPass = ""
@@ -19,6 +19,7 @@ class ViewControllerToDoTask: UIViewController, UITableViewDataSource , UITableV
     var categoryPassedName:String = String()
     var timeValueArray: Array<Int> = Array()   // This changed to an array of Integers not Dates!
     var buttonRow: Int?
+    var deleteTaskIndexPath:IndexPath?
 
     
     @IBOutlet var tableView: UITableView!
@@ -91,9 +92,47 @@ class ViewControllerToDoTask: UIViewController, UITableViewDataSource , UITableV
 
     }
     
-    @IBAction func deleteTaskTapped(_ sender: UIButton) {
+    //@IBAction func deleteTaskTapped(_ sender: UIButton) {}
         
-    }
+        func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+            if editingStyle == .delete {
+                deleteTaskIndexPath = indexPath //Here we assign the variable from step one to contain the value of the cell we want to delete.
+                let taskToDelete = taskNameArray[indexPath.row]
+                self.confirmDelete(task: taskToDelete)
+            }
+        }
+        func confirmDelete(task: String) { //ADD THIS WHOLE FUNCTION
+            let alert = UIAlertController(title: "Delete category", message: "Are you sure you want to permanently delete this task?", preferredStyle: .actionSheet)
+            
+            let DeleteAction = UIAlertAction(title: "Delete", style: .destructive, handler: self.cancelDeleteTask)
+            let CancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: self.cancelDeleteTask)
+            
+            alert.addAction(DeleteAction)
+            alert.addAction(CancelAction)
+            
+            self.present(alert, animated: true, completion: nil)
+        }
+        
+        func handleDeleteCategory(alertAction: UIAlertAction!) -> Void {  //ADD THIS WHOLE FUNCTION
+            if let indexPath = deleteTaskIndexPath {
+                tableView.beginUpdates()
+                taskNameArray.remove(at: indexPath.row) //It removes the corresponding item from the array here in this line!!!!
+                
+                tableView.deleteRows(at: [indexPath], with: .automatic)
+                
+                deleteTaskIndexPath = nil
+                
+                tableView.endUpdates()
+            }
+        }
+        
+        func cancelDeleteTask(alertAction: UIAlertAction!) { //ADD THIS WHOLE FUNCTION
+            deleteTaskIndexPath = nil
+        }
+
+
+    
+    
     
     
     //Navigation

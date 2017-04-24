@@ -8,10 +8,12 @@
 
 import UIKit
 
-class MainViewControllerToDo: UIViewController, UITableViewDataSource , UITableViewDelegate, UIGestureRecognizerDelegate, UIAlertController {
+class MainViewControllerToDo: UIViewController, UITableViewDataSource , UITableViewDelegate, UIGestureRecognizerDelegate{
     
     var categoryArray: Array<String> = Array()
     var categoryToPass = ""
+    var deleteCategoryIndexPath:IndexPath?
+    
     
     @IBOutlet var WelcomeLabel: UILabel!
     
@@ -24,29 +26,9 @@ class MainViewControllerToDo: UIViewController, UITableViewDataSource , UITableV
         super.viewDidLoad()
         tableView.delegate = self
         tableView.dataSource = self
-        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(MainViewControllerToDo.deleteCategory))
-        tableView.addGestureRecognizer(tapGesture)
-        tapGesture.delegate = self
     }
     
-    func deleteCategory(recognizer: UITapGestureRecognizer){
-        if recognizer.state == UIGestureRecognizerState.ended {
-            let tapLocation = recognizer.location(in: self.tableView)
-            if let tapIndexPath = self.tableView.indexPathForRow(at: tapLocation) {
-                let indextoDelete = tapIndexPath.row
-                self.categoryArray.remove(at:indextoDelete)
-                tableView.reloadData()
-            }
-        
-            }
-        let alert = UIAlertController(title: "Are you sure you want to delete this category?", message: "With this", preferredStyle: .actionSheet)
-        alert.addAction(UIAlertAction(title: "A thing", style: .default) { action in
-            // perhaps use action.title here
-            self.present(alert, animated: true)
-        })
-        
-        }
-    }
+    ///TableView methods
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return categoryArray.count
@@ -66,6 +48,50 @@ class MainViewControllerToDo: UIViewController, UITableViewDataSource , UITableV
         categoryToPass = categoryArray[indexPath.row]
         performSegue(withIdentifier: "categorySegue", sender: self)
     }
+    //delegate method: happens when the cell is swiped
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == .delete {
+            deleteCategoryIndexPath = indexPath //Here we assign the variable from step one to contain the value of the cell we want to delete.
+            let categoryToDelete = categoryArray[indexPath.row]
+            self.confirmDelete(category: categoryToDelete)
+        }
+    }
+    
+    //methods to delete category
+    //to send notification to confirm the deleting of cell
+    
+    func confirmDelete(category: String) {
+        let alert = UIAlertController(title: "Delete category", message: "Are you sure you want to permanently delete this category?", preferredStyle: .actionSheet)
+        
+        let DeleteAction = UIAlertAction(title: "Delete", style: .destructive, handler: self.handleDeleteCategory)
+        let CancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: self.cancelDeleteCategory)
+        
+        alert.addAction(DeleteAction)
+        alert.addAction(CancelAction)
+        
+        self.present(alert, animated: true, completion: nil)
+    }
+    
+    //which cell to delete method
+    
+    func handleDeleteCategory(alertAction: UIAlertAction!) -> Void {
+        if let indexPath = deleteCategoryIndexPath {
+            tableView.beginUpdates()
+            categoryArray.remove(at: indexPath.row) //the action of deleting happens here
+            tableView.deleteRows(at: [indexPath], with: .automatic)
+            
+            deleteCategoryIndexPath = nil
+            
+            tableView.endUpdates()
+        }
+
+    }
+    
+    //if the user cancel deleting the cell
+    func cancelDeleteCategory(alertAction: UIAlertAction!) {
+        deleteCategoryIndexPath = nil
+    }
+    
     
     @IBAction func AddCategoryButtonTapped(_ sender: UIButton) {
         let alert = UIAlertController(title: "Add Category", message: "Here you can type the name of your category.", preferredStyle: UIAlertControllerStyle.alert)
@@ -78,12 +104,13 @@ class MainViewControllerToDo: UIViewController, UITableViewDataSource , UITableV
             print("categoryArray: \(self.categoryArray)")
             self.tableView.reloadData() 
         }))
-        alert.addAction(UIAlertAction(title: "Cancel", style: UIAlertActionStyle.default, handler: nil))
-        self.present(alert, animated: true, completion: nil)
-        }
+            alert.addAction(UIAlertAction(title: "Cancel", style: .default, handler: nil))
+            self.present(alert, animated: true, completion: nil)
+
+    }
     }
 
-      func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+      override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         
         if (segue.identifier == "categorySegue"){
             let destViewController = segue.destination as! ViewControllerToDoTask
@@ -92,8 +119,9 @@ class MainViewControllerToDo: UIViewController, UITableViewDataSource , UITableV
                 let selectedCategory = categoryArray[indexPath.row]
                 destViewController.categoryPassedName = selectedCategory
         
-        }
+            }
     }
+}
 }
 
 
