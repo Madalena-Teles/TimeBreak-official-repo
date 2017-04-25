@@ -104,8 +104,8 @@ class ViewControllerToDoTask: UIViewController, UITableViewDataSource , UITableV
         func confirmDelete(task: String) { //ADD THIS WHOLE FUNCTION
             let alert = UIAlertController(title: "Delete category", message: "Are you sure you want to permanently delete this task?", preferredStyle: .actionSheet)
             
-            let DeleteAction = UIAlertAction(title: "Delete", style: .destructive, handler: self.cancelDeleteTask)
-            let CancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: self.cancelDeleteTask)
+            let DeleteAction = UIAlertAction(title: "Delete", style: .destructive, handler: self.handleDeleteTask)
+            let CancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: self.handleDeleteTask)
             
             alert.addAction(DeleteAction)
             alert.addAction(CancelAction)
@@ -113,7 +113,7 @@ class ViewControllerToDoTask: UIViewController, UITableViewDataSource , UITableV
             self.present(alert, animated: true, completion: nil)
         }
         
-        func handleDeleteCategory(alertAction: UIAlertAction!) -> Void {  //ADD THIS WHOLE FUNCTION
+        func handleDeleteTask(alertAction: UIAlertAction!) -> Void {  //ADD THIS WHOLE FUNCTION
             if let indexPath = deleteTaskIndexPath {
                 tableView.beginUpdates()
                 taskNameArray.remove(at: indexPath.row) //It removes the corresponding item from the array here in this line!!!!
