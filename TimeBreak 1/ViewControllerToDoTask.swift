@@ -91,61 +91,49 @@ class ViewControllerToDoTask: UIViewController, UITableViewDataSource , UITableV
         performSegue(withIdentifier: "addTaskButton", sender: self)
 
     }
+
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == .delete {
+            deleteTaskIndexPath = indexPath //Here we assign the variable from step one to contain the value of the cell we want to delete.
+            let taskToDelete = taskNameArray[indexPath.row]
+            self.confirmDelete(task: taskToDelete)
+        }
+    }
     
-    //@IBAction func deleteTaskTapped(_ sender: UIButton) {}
+    func confirmDelete(task: String) {
+        let alert = UIAlertController(title: "Delete category", message: "Are you sure you want to permanently delete this task?", preferredStyle: .actionSheet)
         
-        func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
-            if editingStyle == .delete {
-                deleteTaskIndexPath = indexPath //Here we assign the variable from step one to contain the value of the cell we want to delete.
-                let taskToDelete = taskNameArray[indexPath.row]
-                self.confirmDelete(task: taskToDelete)
-            }
-        }
-        func confirmDelete(task: String) { //ADD THIS WHOLE FUNCTION
-            let alert = UIAlertController(title: "Delete category", message: "Are you sure you want to permanently delete this task?", preferredStyle: .actionSheet)
-            
-            let DeleteAction = UIAlertAction(title: "Delete", style: .destructive, handler: self.handleDeleteTask)
-            let CancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: self.handleDeleteTask)
-            
-            alert.addAction(DeleteAction)
-            alert.addAction(CancelAction)
-            
-            self.present(alert, animated: true, completion: nil)
-        }
+        let DeleteAction = UIAlertAction(title: "Delete", style: .destructive, handler: self.handleDeleteTask)
+        let CancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: self.handleDeleteTask)
         
-        func handleDeleteTask(alertAction: UIAlertAction!) -> Void {  //ADD THIS WHOLE FUNCTION
-            if let indexPath = deleteTaskIndexPath {
-                tableView.beginUpdates()
-                taskNameArray.remove(at: indexPath.row) //It removes the corresponding item from the array here in this line!!!!
-                
-                tableView.deleteRows(at: [indexPath], with: .automatic)
-                
-                deleteTaskIndexPath = nil
-                
-                tableView.endUpdates()
-            }
-        }
+        alert.addAction(DeleteAction)
+        alert.addAction(CancelAction)
         
-        func cancelDeleteTask(alertAction: UIAlertAction!) { //ADD THIS WHOLE FUNCTION
+        self.present(alert, animated: true, completion: nil)
+    }
+    
+    func handleDeleteTask(alertAction: UIAlertAction!) -> Void {
+        if let indexPath = deleteTaskIndexPath {
+            tableView.beginUpdates()
+            taskNameArray.remove(at: indexPath.row) //It removes the corresponding item from the array here in this line!!!!
+            tableView.deleteRows(at: [indexPath], with: .automatic)
             deleteTaskIndexPath = nil
+            tableView.endUpdates()
         }
+    }
+    
+    func cancelDeleteTask(alertAction: UIAlertAction!) {
+        deleteTaskIndexPath = nil
+    }
 
-
-    
-    
-    
-    
     //Navigation
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        
         if (segue.identifier == "addTaskButton"){
             let destViewController = segue.destination as! ViewControllerAddTask
             destViewController.delegate = self
         }
-        
         if (segue.identifier == "timerIcon"){
-            
             let destViewController = segue.destination as! ViewControllerTimer
             if buttonRow != nil {
                 let selectedTask = taskNameArray[buttonRow!]
@@ -153,12 +141,10 @@ class ViewControllerToDoTask: UIViewController, UITableViewDataSource , UITableV
                 let selectedTimeInterval = timeValueArray[buttonRow!] //This had to change to be timeValueArray[indexPath.row].
                 destViewController.chosenTimeInterval = selectedTimeInterval  //This had to change to be time interval
         }
-        
         if (segue.identifier == "editTask"){
             let destViewController = segue.destination as! ViewControllerAddTask
             destViewController.delegate = self
             }
-            
         }
     }
 }

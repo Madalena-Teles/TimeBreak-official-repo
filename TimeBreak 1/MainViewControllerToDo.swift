@@ -28,7 +28,7 @@ class MainViewControllerToDo: UIViewController, UITableViewDataSource , UITableV
         tableView.dataSource = self
     }
     
-    ///TableView methods
+    // MARK: - TableView methods
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return categoryArray.count
@@ -57,7 +57,7 @@ class MainViewControllerToDo: UIViewController, UITableViewDataSource , UITableV
         }
     }
     
-    //methods to delete category
+    // MARK: - Methods to delete category //TO DO: customize swiping cell
     //to send notification to confirm the deleting of cell
     
     func confirmDelete(category: String) {
@@ -73,7 +73,6 @@ class MainViewControllerToDo: UIViewController, UITableViewDataSource , UITableV
     }
     
     //which cell to delete method
-    
     func handleDeleteCategory(alertAction: UIAlertAction!) -> Void {
         if let indexPath = deleteCategoryIndexPath {
             tableView.beginUpdates()
@@ -92,7 +91,7 @@ class MainViewControllerToDo: UIViewController, UITableViewDataSource , UITableV
         deleteCategoryIndexPath = nil
     }
     
-    
+    // MARK: - IBActions
     @IBAction func AddCategoryButtonTapped(_ sender: UIButton) {
         let alert = UIAlertController(title: "Add Category", message: "Here you can type the name of your category.", preferredStyle: UIAlertControllerStyle.alert)
         alert.addTextField { (textField) in
@@ -110,6 +109,8 @@ class MainViewControllerToDo: UIViewController, UITableViewDataSource , UITableV
     }
     }
 
+    // MARK: - Navigation
+    
       override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         
         if (segue.identifier == "categorySegue"){

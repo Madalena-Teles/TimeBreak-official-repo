@@ -75,24 +75,7 @@
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="l3v-JE-pPv" id="82u-D6-hmQ">
                                             <rect key="frame" x="0.0" y="0.0" width="342" height="52"/>
                                             <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="AFx-Dx-Awg">
-                                                    <rect key="frame" x="299" y="1" width="40" height="40"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="height" constant="40" id="SMA-ke-DcV"/>
-                                                        <constraint firstAttribute="width" constant="40" id="sbn-Zg-9Fb"/>
-                                                    </constraints>
-                                                    <state key="normal" title="Button" image="trash can"/>
-                                                    <connections>
-                                                        <action selector="deleteCategoryTapped:" destination="YAN-c7-ugc" eventType="touchUpInside" id="1jt-cQ-KXu"/>
-                                                    </connections>
-                                                </button>
-                                            </subviews>
                                         </tableViewCellContentView>
-                                        <constraints>
-                                            <constraint firstItem="AFx-Dx-Awg" firstAttribute="centerX" secondItem="l3v-JE-pPv" secondAttribute="centerX" multiplier="1.7" id="T8t-xJ-hLz"/>
-                                            <constraint firstItem="AFx-Dx-Awg" firstAttribute="centerY" secondItem="l3v-JE-pPv" secondAttribute="centerY" multiplier="0.8" id="e4e-Pn-QMx"/>
-                                        </constraints>
                                         <connections>
                                             <segue destination="UpS-BT-cLA" kind="show" identifier="categorySegue" id="YNz-Cx-wNb"/>
                                         </connections>
@@ -227,7 +210,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6yu-SI-CV7">
-                                                    <rect key="frame" x="216.5" y="16" width="40" height="40"/>
+                                                    <rect key="frame" x="267.5" y="16" width="40" height="40"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="40" id="JmV-vz-K4c"/>
                                                         <constraint firstAttribute="width" constant="40" id="r5N-Bk-6X8"/>
@@ -235,17 +218,6 @@
                                                     <state key="normal" title="Button" image="Timer-Button-Icon-1"/>
                                                     <connections>
                                                         <action selector="timerButtonTapped:" destination="1r6-Xk-A4R" eventType="touchUpInside" id="bU0-mS-ccb"/>
-                                                    </connections>
-                                                </button>
-                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jfU-B3-Nvh">
-                                                    <rect key="frame" x="267.5" y="17" width="40" height="40"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="width" constant="40" id="4pK-f4-vyf"/>
-                                                        <constraint firstAttribute="height" constant="40" id="PK4-wi-mJr"/>
-                                                    </constraints>
-                                                    <state key="normal" title="Button" image="trash can"/>
-                                                    <connections>
-                                                        <action selector="deleteTaskTapped:" destination="UpS-BT-cLA" eventType="touchUpInside" id="2w4-Q2-xis"/>
                                                     </connections>
                                                 </button>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5ds-9H-UHL">
@@ -258,11 +230,9 @@
                                         </tableViewCellContentView>
                                         <constraints>
                                             <constraint firstItem="5ds-9H-UHL" firstAttribute="centerY" secondItem="1r6-Xk-A4R" secondAttribute="centerY" multiplier="1.1" id="CDK-Ke-qhT"/>
-                                            <constraint firstItem="jfU-B3-Nvh" firstAttribute="centerX" secondItem="1r6-Xk-A4R" secondAttribute="centerX" multiplier="1.7" id="LUO-Li-tNv"/>
-                                            <constraint firstItem="jfU-B3-Nvh" firstAttribute="centerY" secondItem="1r6-Xk-A4R" secondAttribute="centerY" id="Sde-2O-eg1"/>
                                             <constraint firstItem="5ds-9H-UHL" firstAttribute="centerX" secondItem="1r6-Xk-A4R" secondAttribute="centerX" multiplier="0.7" id="bRG-qt-8e7"/>
                                             <constraint firstItem="6yu-SI-CV7" firstAttribute="centerY" secondItem="1r6-Xk-A4R" secondAttribute="centerY" id="e8P-eG-5Wj"/>
-                                            <constraint firstItem="6yu-SI-CV7" firstAttribute="centerX" secondItem="1r6-Xk-A4R" secondAttribute="centerX" multiplier="1.4" id="udc-OW-Qy0"/>
+                                            <constraint firstItem="6yu-SI-CV7" firstAttribute="centerX" secondItem="1r6-Xk-A4R" secondAttribute="centerX" multiplier="1.7" id="udc-OW-Qy0"/>
                                         </constraints>
                                         <connections>
                                             <outlet property="taskLabel" destination="5ds-9H-UHL" id="jsN-AK-HE1"/>
@@ -605,7 +575,6 @@
         <image name="c4c1c9a67442ff48f88e41c7f894a3be-1" width="500" height="750"/>
         <image name="plus button 2 (1)" width="505" height="505"/>
         <image name="square border (2)" width="540" height="540"/>
-        <image name="trash can" width="396" height="492"/>
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="Fcu-qb-mWR"/>
