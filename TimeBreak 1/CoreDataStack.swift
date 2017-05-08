@@ -12,20 +12,35 @@ import CoreData
 class CoreDataStack: NSObject {
     
     static let shared = CoreDataStack()
-    private static let name = "TimeBreak_1"
+    
+    private static let name = "CategoryTaskModel"
     
     var context: NSManagedObjectContext {
-        //return persistentContainer.
+        return persistentContainer.viewContext
+        
     }
-
-    lazy var persistentContainer:NSPersistentContainer = {
+    
+    lazy var persistentContainer: NSPersistentContainer = {
         let container = NSPersistentContainer(name: CoreDataStack.name)
-        container.load@PersistentStores { storeDescripton, error in
+        container.loadPersistentStores { storeDescription, error in
             if let error = error as NSError? {
                 print("Error: \(error.userInfo)")
             }
-    }
+        }
         return container
     }()
+    
+    func saveContext() {
+        let context = persistentContainer.viewContext
+        if context.hasChanges {
+            do {
+                try context.save()
+            } catch  {
+                let nserror = error as NSError
+                print("Unresolved error: \(nserror), \(nserror.userInfo)")
+            }
+        }
+    }
 }
+
 

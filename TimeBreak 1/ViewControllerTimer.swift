@@ -24,6 +24,7 @@ class ViewControllerTimer: UIViewController {
     @IBOutlet var startButton: UIButton!
     @IBOutlet var snoozeButton: UIButton!
     
+    //MARK: - viewDidLoad
     override func viewDidLoad() {
         super.viewDidLoad()
         //Now we assign the chosen time interval to "seconds" and our timer can easily start counting down the seconds which is what the chosenTimeInterval represents!!
@@ -55,6 +56,7 @@ class ViewControllerTimer: UIViewController {
         return String(format: "%02i:%02i:%02i", Hours, Minutes, Seconds)
     }
     
+    //MARK: - IBActions
     @IBAction func BackButtonTapped(_ sender: UIButton) {
         
         dismiss(animated: false, completion: nil)
@@ -77,7 +79,6 @@ class ViewControllerTimer: UIViewController {
         }
     }
     
-    //More adjustmet is needed to deal with the reset button. We will need to do this!!
     
     @IBAction func ResetButtonTapped(_ sender: UIButton) {
         timer.invalidate()
@@ -87,7 +88,7 @@ class ViewControllerTimer: UIViewController {
         self.snoozeButton.isEnabled = false
         
     }
-
+    //MARK: - Navigation
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(false)
         taskLabel.text = taskName

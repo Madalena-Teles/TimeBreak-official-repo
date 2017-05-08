@@ -7,12 +7,14 @@
 //
 
 import UIKit
+import CoreData
 
 class MainViewControllerToDo: UIViewController, UITableViewDataSource , UITableViewDelegate, UIGestureRecognizerDelegate{
     
     var categoryArray: Array<String> = Array()
     var categoryToPass = ""
     var deleteCategoryIndexPath:IndexPath?
+    var categories: [Category] = []
     
     
     @IBOutlet var WelcomeLabel: UILabel!
@@ -26,6 +28,12 @@ class MainViewControllerToDo: UIViewController, UITableViewDataSource , UITableV
         super.viewDidLoad()
         tableView.delegate = self
         tableView.dataSource = self
+        getData() // fetch data in coredata
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        getData() //The fetch method is called when the view first appears.
+        tableView.reloadData()
     }
     
     // MARK: - TableView methods
@@ -38,8 +46,9 @@ class MainViewControllerToDo: UIViewController, UITableViewDataSource , UITableV
         UITableViewCell {
             let cellIdentifier = "categoryCell"
             let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for:
-                indexPath as IndexPath) as UITableViewCell
-            cell.textLabel?.text = categoryArray[indexPath.row]
+                indexPath as IndexPath) as! CategoryTableViewCell
+            let category = categories[indexPath.row]
+            cell.categoryName?.text = category.name
             return cell
     }
     
@@ -52,7 +61,7 @@ class MainViewControllerToDo: UIViewController, UITableViewDataSource , UITableV
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
             deleteCategoryIndexPath = indexPath //Here we assign the variable from step one to contain the value of the cell we want to delete.
-            let categoryToDelete = categoryArray[indexPath.row]
+            let categoryToDelete = categoryArray[indexPath.row] //TO DO: delete categories from core data
             self.confirmDelete(category: categoryToDelete)
         }
     }
@@ -91,6 +100,20 @@ class MainViewControllerToDo: UIViewController, UITableViewDataSource , UITableV
         deleteCategoryIndexPath = nil
     }
     
+    //MARK: - Methods to fetch and save data
+    func getData() {
+        do {
+            categories = try CoreDataStack.shared.context.fetch(Category.fetch)
+        }
+        catch { //TO DO: add an alert for the error
+            print("Error fetching tasks")
+        }
+    }
+    func saveData() {
+        
+    }
+    
+    
     // MARK: - IBActions
     @IBAction func AddCategoryButtonTapped(_ sender: UIButton) {
         let alert = UIAlertController(title: "Add Category", message: "Here you can type the name of your category.", preferredStyle: UIAlertControllerStyle.alert)
@@ -98,9 +121,15 @@ class MainViewControllerToDo: UIViewController, UITableViewDataSource , UITableV
             textField.text = ""
         alert.addAction(UIAlertAction(title: "Add", style: .default, handler: { [weak alert] (_) in
             let textField = alert!.textFields![0] // Force unwrapping because we know it exists.
-            print("Text field: \(textField.text!)")
-            self.categoryArray.append(textField.text!)
-            print("categoryArray: \(self.categoryArray)")
+            if textField.text != "" {
+                self.categoryArray.append(textField.text!)
+                let newCategory = Category(context: CoreDataStack.shared.context)
+                newCategory.name = textField.text!
+                CoreDataStack.shared.saveContext() // data was saved
+                
+                
+                
+            }
             self.tableView.reloadData() 
         }))
             alert.addAction(UIAlertAction(title: "Cancel", style: .default, handler: nil))
@@ -125,4 +154,8 @@ class MainViewControllerToDo: UIViewController, UITableViewDataSource , UITableV
 }
 }
 
-
+extension Category {
+    static var fetch: NSFetchRequest<Category> {
+        return NSFetchRequest<Category>(entityName: "Category")
+}
+}

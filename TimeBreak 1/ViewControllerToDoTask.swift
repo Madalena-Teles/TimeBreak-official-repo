@@ -12,6 +12,7 @@ import UIKit
 
 class ViewControllerToDoTask: UIViewController, UITableViewDataSource , UITableViewDelegate, DataSentDelegate, UIGestureRecognizerDelegate {
     
+    //MARK: - variables
     var taskTimeToPass = 1800
     var nameToPass = ""
     var taskNameArray: Array<String> = Array()
@@ -21,12 +22,13 @@ class ViewControllerToDoTask: UIViewController, UITableViewDataSource , UITableV
     var buttonRow: Int?
     var deleteTaskIndexPath:IndexPath?
 
-    
+    //MARK: - IBOutlets
     @IBOutlet var tableView: UITableView!
     @IBOutlet var AddTaskLabel: UILabel!
     @IBOutlet var categoryName: UILabel!
     @IBOutlet var todaysDateLabel: UILabel!
     
+    //MARK: - viewDidLoad
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.delegate = self
@@ -39,8 +41,7 @@ class ViewControllerToDoTask: UIViewController, UITableViewDataSource , UITableV
         todaysDateLabel.text = result
     }
 
-    // TableView Delegate Methods
-    
+    // MARK: - TableView Delegate Methods
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return taskNameArray.count
     }
@@ -70,28 +71,8 @@ class ViewControllerToDoTask: UIViewController, UITableViewDataSource , UITableV
         performSegue(withIdentifier: "editTask", sender: self)
     }
     
-    // Delegate Methods
+    // MARK: - TableView Deleting task Methods
     
-    func userDidEnterTaskName(taskName: String) {
-        taskNameArray.append(taskName)
-        tableView.reloadData()
-    }
-    
-    func userDidEnterChosenTimeInterval(chosenTimeInterval: Int) { //This method is now receiving an integer!!
-        timeValueArray.append(chosenTimeInterval) //This now sends the seconds(which is an integer) to an array of integers!
-    }
-    
-    //Actions
-    
-    @IBAction func backButtonTapped(_ sender: Any) {
-        dismiss(animated: false, completion: nil)
-    }
-    
-    @IBAction func AddTaskButtonTapped(_ sender: UIButton) {
-        performSegue(withIdentifier: "addTaskButton", sender: self)
-
-    }
-
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
             deleteTaskIndexPath = indexPath //Here we assign the variable from step one to contain the value of the cell we want to delete.
@@ -126,7 +107,30 @@ class ViewControllerToDoTask: UIViewController, UITableViewDataSource , UITableV
         deleteTaskIndexPath = nil
     }
 
-    //Navigation
+    
+    //MARK: - Delegate Methods
+    
+    func userDidEnterTaskName(taskName: String) {
+        taskNameArray.append(taskName)
+        tableView.reloadData()
+    }
+    
+    func userDidEnterChosenTimeInterval(chosenTimeInterval: Int) { //This method is now receiving an integer!!
+        timeValueArray.append(chosenTimeInterval) //This now sends the seconds(which is an integer) to an array of integers!
+    }
+    
+    //MARK: - Actions
+    
+    @IBAction func backButtonTapped(_ sender: Any) {
+        dismiss(animated: false, completion: nil)
+    }
+    
+    @IBAction func AddTaskButtonTapped(_ sender: UIButton) {
+        performSegue(withIdentifier: "addTaskButton", sender: self)
+
+    }
+
+    //MARK: - Navigation
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if (segue.identifier == "addTaskButton"){
@@ -138,8 +142,8 @@ class ViewControllerToDoTask: UIViewController, UITableViewDataSource , UITableV
             if buttonRow != nil {
                 let selectedTask = taskNameArray[buttonRow!]
                 destViewController.taskName = selectedTask
-                let selectedTimeInterval = timeValueArray[buttonRow!] //This had to change to be timeValueArray[indexPath.row].
-                destViewController.chosenTimeInterval = selectedTimeInterval  //This had to change to be time interval
+                let selectedTimeInterval = timeValueArray[buttonRow!]
+                destViewController.chosenTimeInterval = selectedTimeInterval
         }
         if (segue.identifier == "editTask"){
             let destViewController = segue.destination as! ViewControllerAddTask

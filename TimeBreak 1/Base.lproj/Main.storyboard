@@ -69,14 +69,27 @@
                                 <rect key="frame" x="0.0" y="267" width="375" height="200"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="categoryCell" rowHeight="53" id="l3v-JE-pPv">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="categoryCell" rowHeight="53" id="l3v-JE-pPv" customClass="CategoryTableViewCell" customModule="TimeBreak_1" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="375" height="53"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="l3v-JE-pPv" id="82u-D6-hmQ">
                                             <rect key="frame" x="0.0" y="0.0" width="342" height="52"/>
                                             <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SOC-ox-LvX">
+                                                    <rect key="frame" x="137" y="16" width="42" height="21"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="SOC-ox-LvX" firstAttribute="centerY" secondItem="82u-D6-hmQ" secondAttribute="centerY" id="8Z4-f2-ebQ"/>
+                                                <constraint firstItem="SOC-ox-LvX" firstAttribute="centerX" secondItem="82u-D6-hmQ" secondAttribute="centerX" id="i0R-Tk-b37"/>
+                                            </constraints>
                                         </tableViewCellContentView>
                                         <connections>
+                                            <outlet property="categoryName" destination="SOC-ox-LvX" id="Wet-dd-H6A"/>
                                             <segue destination="UpS-BT-cLA" kind="show" identifier="categorySegue" id="YNz-Cx-wNb"/>
                                         </connections>
                                     </tableViewCell>
