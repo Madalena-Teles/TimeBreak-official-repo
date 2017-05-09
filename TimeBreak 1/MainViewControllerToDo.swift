@@ -12,17 +12,13 @@ import CoreData
 class MainViewControllerToDo: UIViewController, UITableViewDataSource , UITableViewDelegate, UIGestureRecognizerDelegate{
     
     var categoryArray: Array<String> = Array()
-    var categoryToPass = ""
+    var categoryToPass = Category()
     var deleteCategoryIndexPath:IndexPath?
     var categories: [Category] = []
     
-    
     @IBOutlet var WelcomeLabel: UILabel!
-    
     @IBOutlet var MyCategoriesLabel: UILabel!
-    
     @IBOutlet var tableView: UITableView!
-    
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -39,7 +35,7 @@ class MainViewControllerToDo: UIViewController, UITableViewDataSource , UITableV
     // MARK: - TableView methods
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return categoryArray.count
+        return categories.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) ->
@@ -54,15 +50,16 @@ class MainViewControllerToDo: UIViewController, UITableViewDataSource , UITableV
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
-        categoryToPass = categoryArray[indexPath.row]
+        categoryToPass = categories[indexPath.row]
         performSegue(withIdentifier: "categorySegue", sender: self)
     }
     //delegate method: happens when the cell is swiped
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
             deleteCategoryIndexPath = indexPath //Here we assign the variable from step one to contain the value of the cell we want to delete.
-            let categoryToDelete = categoryArray[indexPath.row] //TO DO: delete categories from core data
-            self.confirmDelete(category: categoryToDelete)
+            let categoryToDelete = categories[indexPath.row]
+            removeData(categoryToDelete: categoryToDelete) //doing the deleting action from core data through the remove data method
+            self.confirmDelete(category: categoryToDelete.name!) //category name alone
         }
     }
     
@@ -85,14 +82,11 @@ class MainViewControllerToDo: UIViewController, UITableViewDataSource , UITableV
     func handleDeleteCategory(alertAction: UIAlertAction!) -> Void {
         if let indexPath = deleteCategoryIndexPath {
             tableView.beginUpdates()
-            categoryArray.remove(at: indexPath.row) //the action of deleting happens here
+            categories.remove(at: indexPath.row) //the action of deleting happens here
             tableView.deleteRows(at: [indexPath], with: .automatic)
-            
             deleteCategoryIndexPath = nil
-            
             tableView.endUpdates()
         }
-
     }
     
     //if the user cancel deleting the cell
@@ -113,6 +107,12 @@ class MainViewControllerToDo: UIViewController, UITableViewDataSource , UITableV
         
     }
     
+    func removeData (categoryToDelete: Category){
+        
+        //let fetchRequest: NSFetchRequest<Category> = Category.fetchRequest()
+        //fetchRequest.predicate = Predicate.init(format: "\(categoryToDelete)")
+        //CoreDataStack.shared.context.delete(categoryToDelete)
+    }
     
     // MARK: - IBActions
     @IBAction func AddCategoryButtonTapped(_ sender: UIButton) {
@@ -126,9 +126,7 @@ class MainViewControllerToDo: UIViewController, UITableViewDataSource , UITableV
                 let newCategory = Category(context: CoreDataStack.shared.context)
                 newCategory.name = textField.text!
                 CoreDataStack.shared.saveContext() // data was saved
-                
-                
-                
+                self.getData()
             }
             self.tableView.reloadData() 
         }))
@@ -146,8 +144,8 @@ class MainViewControllerToDo: UIViewController, UITableViewDataSource , UITableV
             let destViewController = segue.destination as! ViewControllerToDoTask
         
             if let indexPath = self.tableView.indexPathForSelectedRow {
-                let selectedCategory = categoryArray[indexPath.row]
-                destViewController.categoryPassedName = selectedCategory
+                let selectedCategory = categories[indexPath.row]
+                destViewController.categoryPassed = selectedCategory
         
             }
     }

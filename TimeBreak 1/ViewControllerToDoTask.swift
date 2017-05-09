@@ -17,7 +17,7 @@ class ViewControllerToDoTask: UIViewController, UITableViewDataSource , UITableV
     var nameToPass = ""
     var taskNameArray: Array<String> = Array()
     var taskTimeArray: Array<Int> = Array()
-    var categoryPassedName:String = String()
+    var categoryPassed = Category()
     var timeValueArray: Array<Int> = Array()   // This changed to an array of Integers not Dates!
     var buttonRow: Int?
     var deleteTaskIndexPath:IndexPath?
@@ -33,7 +33,7 @@ class ViewControllerToDoTask: UIViewController, UITableViewDataSource , UITableV
         super.viewDidLoad()
         tableView.delegate = self
         tableView.dataSource = self
-        categoryName.text = categoryPassedName
+        categoryName.text = categoryPassed.name //unload category(backpack) and get the string
         let date = Date()
         let formatter = DateFormatter()
         formatter.dateFormat = "EEEE, MMM d, yyyy"
