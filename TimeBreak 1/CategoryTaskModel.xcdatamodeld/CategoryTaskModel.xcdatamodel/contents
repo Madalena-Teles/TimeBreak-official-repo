@@ -3,7 +3,11 @@
     <entity name="Category" representedClassName="Category" syncable="YES" codeGenerationType="class">
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
     </entity>
+    <entity name="Task" representedClassName="Task" syncable="YES" codeGenerationType="class">
+        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+    </entity>
     <elements>
         <element name="Category" positionX="-45" positionY="0" width="128" height="60"/>
+        <element name="Task" positionX="-18" positionY="36" width="128" height="60"/>
     </elements>
 </model>

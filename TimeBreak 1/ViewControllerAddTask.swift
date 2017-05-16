@@ -21,7 +21,7 @@ class ViewControllerAddTask: UIViewController {
     var chosenDate = TimeInterval()
     var delegate: DataSentDelegate?
     
-    @IBOutlet var MyTaskTextField: UITextField!
+    @IBOutlet var myTaskTextField: UITextField!
     @IBOutlet var StartingDateOfTaskTextField: UITextField!
     @IBOutlet var DueDateOfTaskTextField: UITextField!
     @IBOutlet var TimeForCompletionLabel: UILabel!
@@ -35,8 +35,14 @@ class ViewControllerAddTask: UIViewController {
     // MARK: - IBActions- what happens when the add task button is tapped- all the things in that page
     @IBAction func AddTaskButtonTapped(_ sender: UIButton) {
         if delegate != nil {
-            if let taskName = MyTaskTextField.text {
-                print(MyTaskTextField.text!)
+            if myTaskTextField.text != "" {
+                let newTask = Task(context: CoreDataStack.shared.context)
+                newTask.name = myTaskTextField.text!
+                CoreDataStack.shared.saveContext() // data was saved
+            }
+            
+            if let taskName = myTaskTextField.text {
+                print(myTaskTextField.text!)
                 
                 delegate?.userDidEnterTaskName(taskName: taskName) //This is where the passing starts/happens.
                 dismiss(animated: true, completion: nil)

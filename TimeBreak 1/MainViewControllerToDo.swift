@@ -15,7 +15,6 @@ class MainViewControllerToDo: UIViewController, UITableViewDataSource , UITableV
     var categoryToPass = Category()
     var deleteCategoryIndexPath:IndexPath?
     var categories: [Category] = []
-    
     @IBOutlet var WelcomeLabel: UILabel!
     @IBOutlet var MyCategoriesLabel: UILabel!
     @IBOutlet var tableView: UITableView!
@@ -25,11 +24,6 @@ class MainViewControllerToDo: UIViewController, UITableViewDataSource , UITableV
         tableView.delegate = self
         tableView.dataSource = self
         getData() // fetch data in coredata
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        getData() //The fetch method is called when the view first appears.
-        tableView.reloadData()
     }
     
     // MARK: - TableView methods
@@ -49,7 +43,6 @@ class MainViewControllerToDo: UIViewController, UITableViewDataSource , UITableV
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        
         categoryToPass = categories[indexPath.row]
         performSegue(withIdentifier: "categorySegue", sender: self)
     }
@@ -58,8 +51,17 @@ class MainViewControllerToDo: UIViewController, UITableViewDataSource , UITableV
         if editingStyle == .delete {
             deleteCategoryIndexPath = indexPath //Here we assign the variable from step one to contain the value of the cell we want to delete.
             let categoryToDelete = categories[indexPath.row]
-            removeData(categoryToDelete: categoryToDelete) //doing the deleting action from core data through the remove data method
             self.confirmDelete(category: categoryToDelete.name!) //category name alone
+            let context: NSManagedObjectContext = CoreDataStack.shared.context
+            let index = indexPath.row
+            context.delete(categories[index] as NSManagedObject) // deleting from context specific thing from cateories array
+            let _ : NSError! = nil
+            do {
+                try context.save()
+                self.tableView.reloadData()
+            } catch {
+                print("error: \(error)")
+            }
         }
     }
     
@@ -68,13 +70,10 @@ class MainViewControllerToDo: UIViewController, UITableViewDataSource , UITableV
     
     func confirmDelete(category: String) {
         let alert = UIAlertController(title: "Delete category", message: "Are you sure you want to permanently delete this category?", preferredStyle: .actionSheet)
-        
         let DeleteAction = UIAlertAction(title: "Delete", style: .destructive, handler: self.handleDeleteCategory)
         let CancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: self.cancelDeleteCategory)
-        
         alert.addAction(DeleteAction)
         alert.addAction(CancelAction)
-        
         self.present(alert, animated: true, completion: nil)
     }
     
@@ -103,16 +102,6 @@ class MainViewControllerToDo: UIViewController, UITableViewDataSource , UITableV
             print("Error fetching tasks")
         }
     }
-    func saveData() {
-        
-    }
-    
-    func removeData (categoryToDelete: Category){
-        
-        //let fetchRequest: NSFetchRequest<Category> = Category.fetchRequest()
-        //fetchRequest.predicate = Predicate.init(format: "\(categoryToDelete)")
-        //CoreDataStack.shared.context.delete(categoryToDelete)
-    }
     
     // MARK: - IBActions
     @IBAction func AddCategoryButtonTapped(_ sender: UIButton) {
@@ -132,28 +121,24 @@ class MainViewControllerToDo: UIViewController, UITableViewDataSource , UITableV
         }))
             alert.addAction(UIAlertAction(title: "Cancel", style: .default, handler: nil))
             self.present(alert, animated: true, completion: nil)
-
-    }
-    }
+        }
+    } ///
 
     // MARK: - Navigation
     
       override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        
         if (segue.identifier == "categorySegue"){
             let destViewController = segue.destination as! ViewControllerToDoTask
-        
             if let indexPath = self.tableView.indexPathForSelectedRow {
                 let selectedCategory = categories[indexPath.row]
                 destViewController.categoryPassed = selectedCategory
-        
             }
-    }
-}
+        }
+     }
 }
 
 extension Category {
     static var fetch: NSFetchRequest<Category> {
         return NSFetchRequest<Category>(entityName: "Category")
-}
+    } ///
 }

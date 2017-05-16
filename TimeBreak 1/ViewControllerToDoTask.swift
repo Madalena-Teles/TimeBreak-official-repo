@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import CoreData
 
 // Receiving ViewController
 
@@ -21,6 +22,7 @@ class ViewControllerToDoTask: UIViewController, UITableViewDataSource , UITableV
     var timeValueArray: Array<Int> = Array()   // This changed to an array of Integers not Dates!
     var buttonRow: Int?
     var deleteTaskIndexPath:IndexPath?
+    var tasks: Array<Task> = []
 
     //MARK: - IBOutlets
     @IBOutlet var tableView: UITableView!
@@ -33,6 +35,7 @@ class ViewControllerToDoTask: UIViewController, UITableViewDataSource , UITableV
         super.viewDidLoad()
         tableView.delegate = self
         tableView.dataSource = self
+        getData()
         categoryName.text = categoryPassed.name //unload category(backpack) and get the string
         let date = Date()
         let formatter = DateFormatter()
@@ -41,6 +44,15 @@ class ViewControllerToDoTask: UIViewController, UITableViewDataSource , UITableV
         todaysDateLabel.text = result
     }
 
+    func getData(){
+        do {
+            tasks = try CoreDataStack.shared.context.fetch(Task.fetch) //TO DO: fix fetch issue
+        }
+        catch { //TO DO: add an alert for the error
+            print("Error fetching tasks")
+        }
+    }
+    
     // MARK: - TableView Delegate Methods
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return taskNameArray.count
@@ -51,7 +63,8 @@ class ViewControllerToDoTask: UIViewController, UITableViewDataSource , UITableV
             let cellIdentifier = "toDoCell"
             let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for:
                 indexPath as IndexPath) as! TaskTableViewCell
-            cell.taskLabel.text = taskNameArray[indexPath.row]
+            let task = tasks[indexPath.row]
+            cell.taskLabel?.text = task.name
             cell.timerButton.tag = indexPath.row
             cell.timerButton.addTarget(self, action: #selector(self.timerButtonTapped), for: .touchUpInside)
             return cell
@@ -72,12 +85,22 @@ class ViewControllerToDoTask: UIViewController, UITableViewDataSource , UITableV
     }
     
     // MARK: - TableView Deleting task Methods
-    
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
             deleteTaskIndexPath = indexPath //Here we assign the variable from step one to contain the value of the cell we want to delete.
             let taskToDelete = taskNameArray[indexPath.row]
             self.confirmDelete(task: taskToDelete)
+            let context: NSManagedObjectContext = CoreDataStack.shared.context
+            let index = indexPath.row
+            context.delete(tasks[index] as NSManagedObject) // deleting from context specific thing from tasks array
+            let _ : NSError! = nil
+            do {
+                try context.save()
+                self.tableView.reloadData()
+            } catch {
+                print("error: \(error)")
+            }
+
         }
     }
     
