@@ -24,7 +24,6 @@ class ViewControllerTimer: UIViewController {
     @IBOutlet var startButton: UIButton!
     @IBOutlet var snoozeButton: UIButton!
     
-    //MARK: - viewDidLoad
     override func viewDidLoad() {
         super.viewDidLoad()
         //Now we assign the chosen time interval to "seconds" and our timer can easily start counting down the seconds which is what the chosenTimeInterval represents!!
@@ -32,14 +31,14 @@ class ViewControllerTimer: UIViewController {
         taskLabel.text = taskName
         CountDownTimerLabel.text = timeString(time: Double(chosenTimeInterval))
     }
-    
+    //MARK: - method running timer
     func runTimer() {
         seconds = chosenTimeInterval
         timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: (#selector(ViewControllerTimer.updateTimer)), userInfo: nil, repeats: true)
         isTimerRunning = true
         self.snoozeButton.isEnabled = true
     }
-    
+    //MARK: - TableView updating timer
     func updateTimer(){
         if seconds < 1 {
             timer.invalidate()
@@ -48,7 +47,7 @@ class ViewControllerTimer: UIViewController {
             CountDownTimerLabel.text = timeString(time: TimeInterval(seconds))
         }
     }
-    
+    //MARK: - method for converting time
     func timeString(time:TimeInterval) -> String {
         let Hours = Int(time) / 3600
         let Minutes = Int(time) / 60 % 60
@@ -58,7 +57,6 @@ class ViewControllerTimer: UIViewController {
     
     //MARK: - IBActions
     @IBAction func BackButtonTapped(_ sender: UIButton) {
-        
         dismiss(animated: false, completion: nil)
     }
     
@@ -78,8 +76,7 @@ class ViewControllerTimer: UIViewController {
             self.resumeTapped = false
         }
     }
-    
-    
+
     @IBAction func ResetButtonTapped(_ sender: UIButton) {
         timer.invalidate()
         seconds = chosenTimeInterval

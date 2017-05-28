@@ -12,9 +12,7 @@ import CoreData
 class CoreDataStack: NSObject {
     
     static let shared = CoreDataStack()
-    
     private static let name = "CategoryTaskModel"
-    
     var context: NSManagedObjectContext {
         return persistentContainer.viewContext
         

@@ -11,13 +11,13 @@ import CoreData
 
 // Receiving ViewController
 
-class ViewControllerToDoTask: UIViewController, UITableViewDataSource , UITableViewDelegate, DataSentDelegate, UIGestureRecognizerDelegate {
+class ViewControllerToDoTask: UIViewController, UITableViewDataSource , UITableViewDelegate, UIGestureRecognizerDelegate {
     
     //MARK: - variables
     var taskTimeToPass = 1800
     var nameToPass = ""
-    var taskNameArray: Array<String> = Array()
-    var taskTimeArray: Array<Int> = Array()
+    //var taskNameArray: Array<String> = Array()
+    //var taskTimeArray: Array<Int> = Array()
     var categoryPassed = Category()
     var timeValueArray: Array<Int> = Array()   // This changed to an array of Integers not Dates!
     var buttonRow: Int?
@@ -42,6 +42,7 @@ class ViewControllerToDoTask: UIViewController, UITableViewDataSource , UITableV
         formatter.dateFormat = "EEEE, MMM d, yyyy"
         let result = formatter.string(from: date)
         todaysDateLabel.text = result
+        tableView.reloadData()
     }
 
     func getData(){
@@ -55,7 +56,7 @@ class ViewControllerToDoTask: UIViewController, UITableViewDataSource , UITableV
     
     // MARK: - TableView Delegate Methods
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return taskNameArray.count
+        return tasks.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) ->
@@ -73,14 +74,14 @@ class ViewControllerToDoTask: UIViewController, UITableViewDataSource , UITableV
     func timerButtonTapped(sender:UIButton) {
         self.buttonRow = sender.tag
         let timerVC = storyboard?.instantiateViewController(withIdentifier: "timerVC") as! ViewControllerTimer
-        timerVC.taskName = taskNameArray[buttonRow!]
-        timerVC.chosenTimeInterval = timeValueArray[buttonRow!] 
+        timerVC.taskName = tasks[buttonRow!].name!
+        timerVC.chosenTimeInterval = Int(tasks[buttonRow!].time)
         self.present(timerVC, animated:true, completion:nil)
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         self.buttonRow = tableView.indexPathForSelectedRow?.row
-        nameToPass = taskNameArray[indexPath.row]
+        nameToPass = tasks[indexPath.row].name!
         performSegue(withIdentifier: "editTask", sender: self)
     }
     
@@ -88,7 +89,7 @@ class ViewControllerToDoTask: UIViewController, UITableViewDataSource , UITableV
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
             deleteTaskIndexPath = indexPath //Here we assign the variable from step one to contain the value of the cell we want to delete.
-            let taskToDelete = taskNameArray[indexPath.row]
+            let taskToDelete = tasks[indexPath.row]
             self.confirmDelete(task: taskToDelete)
             let context: NSManagedObjectContext = CoreDataStack.shared.context
             let index = indexPath.row
@@ -104,22 +105,19 @@ class ViewControllerToDoTask: UIViewController, UITableViewDataSource , UITableV
         }
     }
     
-    func confirmDelete(task: String) {
+    func confirmDelete(task: Task) {
         let alert = UIAlertController(title: "Delete category", message: "Are you sure you want to permanently delete this task?", preferredStyle: .actionSheet)
-        
         let DeleteAction = UIAlertAction(title: "Delete", style: .destructive, handler: self.handleDeleteTask)
         let CancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: self.handleDeleteTask)
-        
         alert.addAction(DeleteAction)
         alert.addAction(CancelAction)
-        
         self.present(alert, animated: true, completion: nil)
     }
     
     func handleDeleteTask(alertAction: UIAlertAction!) -> Void {
         if let indexPath = deleteTaskIndexPath {
             tableView.beginUpdates()
-            taskNameArray.remove(at: indexPath.row) //It removes the corresponding item from the array here in this line!!!!
+            tasks.remove(at: indexPath.row) //It removes the corresponding item from the array here in this line!!!!
             tableView.deleteRows(at: [indexPath], with: .automatic)
             deleteTaskIndexPath = nil
             tableView.endUpdates()
@@ -132,18 +130,16 @@ class ViewControllerToDoTask: UIViewController, UITableViewDataSource , UITableV
 
     
     //MARK: - Delegate Methods
+    //func userDidEnterTaskName(taskName: String) {
+        //tasks.append(taskName)
+        //tableView.reloadData()
+    //}
     
-    func userDidEnterTaskName(taskName: String) {
-        taskNameArray.append(taskName)
-        tableView.reloadData()
-    }
-    
-    func userDidEnterChosenTimeInterval(chosenTimeInterval: Int) { //This method is now receiving an integer!!
-        timeValueArray.append(chosenTimeInterval) //This now sends the seconds(which is an integer) to an array of integers!
-    }
+    //func userDidEnterChosenTimeInterval(chosenTimeInterval: Int) { //This method is now receiving an integer!!
+        //timeValueArray.append(chosenTimeInterval) //This now sends the seconds(which is an integer) to an array of integers!
+    //}
     
     //MARK: - Actions
-    
     @IBAction func backButtonTapped(_ sender: Any) {
         dismiss(animated: false, completion: nil)
     }
@@ -156,23 +152,28 @@ class ViewControllerToDoTask: UIViewController, UITableViewDataSource , UITableV
     //MARK: - Navigation
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if (segue.identifier == "addTaskButton"){
-            let destViewController = segue.destination as! ViewControllerAddTask
-            destViewController.delegate = self
-        }
+        //if (segue.identifier == "addTaskButton"){
+            //let destViewController = segue.destination as! ViewControllerAddTask
+            //destViewController.delegate = self
+        //}
         if (segue.identifier == "timerIcon"){
             let destViewController = segue.destination as! ViewControllerTimer
             if buttonRow != nil {
-                let selectedTask = taskNameArray[buttonRow!]
+                let selectedTask = tasks[buttonRow!].name!
                 destViewController.taskName = selectedTask
                 let selectedTimeInterval = timeValueArray[buttonRow!]
                 destViewController.chosenTimeInterval = selectedTimeInterval
         }
-        if (segue.identifier == "editTask"){
-            let destViewController = segue.destination as! ViewControllerAddTask
-            destViewController.delegate = self
-            }
+        //if (segue.identifier == "editTask"){
+            //let destViewController = segue.destination as! ViewControllerAddTask
+            //destViewController.delegate = self
+            //}
         }
     }
 }
 
+extension Task {
+    static var fetch: NSFetchRequest<Task>{
+        return NSFetchRequest<Task>(entityName: "Task")
+    }
+}
