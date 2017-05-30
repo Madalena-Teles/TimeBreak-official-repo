@@ -7,7 +7,7 @@
 //
 
 import UIKit
-
+import CoreData
 
 class ViewControllerTimer: UIViewController {
     
@@ -85,18 +85,5 @@ class ViewControllerTimer: UIViewController {
         self.snoozeButton.isEnabled = false
         
     }
-    //MARK: - Navigation
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(false)
-        taskLabel.text = taskName
-    }
+    
 }
-
-
-
-
-
-
-
-
-

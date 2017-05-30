@@ -170,6 +170,13 @@ class ViewControllerToDoTask: UIViewController, UITableViewDataSource , UITableV
             //}
         }
     }
+
+
+override func viewWillAppear(_ animated: Bool) {
+    super.viewWillAppear(false)
+    getData()
+    self.tableView.reloadData()
+}
 }
 
 extension Task {

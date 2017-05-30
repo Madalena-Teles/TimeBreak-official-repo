@@ -79,4 +79,6 @@ class ViewControllerAddTask: UIViewController {
     @IBAction func gestureTapped(_ sender: UITapGestureRecognizer) {
         view.endEditing(true)
     }
+    
 }
+
