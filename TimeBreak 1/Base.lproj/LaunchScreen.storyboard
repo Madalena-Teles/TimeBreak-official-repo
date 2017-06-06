@@ -26,13 +26,13 @@
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Welcome to TimeBreak!" textAlignment="right" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="urD-fj-DJL">
-                                <rect key="frame" x="35" y="531.5" width="305.5" height="38"/>
-                                <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="28"/>
+                                <rect key="frame" x="38" y="532.5" width="300.5" height="36"/>
+                                <fontDescription key="fontDescription" name="AvenirNext-Bold" family="Avenir Next" pointSize="26"/>
                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="TB-LOGO" translatesAutoresizingMaskIntoConstraints="NO" id="oe1-vv-wMp">
-                                <rect key="frame" x="12.5" y="92" width="350" height="350"/>
+                                <rect key="frame" x="13" y="92" width="350" height="350"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="350" id="5VA-b0-u86"/>
                                     <constraint firstAttribute="height" constant="350" id="XZl-P8-w7F"/>

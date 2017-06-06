@@ -18,10 +18,10 @@ class MenuViewController: UIViewController {
 
         getStartedButton.layer.cornerRadius = 10.0
         getStartedButton.layer.borderColor = UIColor.black.cgColor
-        getStartedButton.layer.borderWidth = 2
+        getStartedButton.layer.borderWidth = 1
         settingsButton.layer.cornerRadius = 10.0
         settingsButton.layer.borderColor = UIColor.black.cgColor
-        settingsButton.layer.borderWidth = 2
+        settingsButton.layer.borderWidth = 1
         
     }
 

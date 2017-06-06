@@ -39,7 +39,6 @@ class MainViewControllerToDo: UIViewController, UITableViewDataSource , UITableV
                 indexPath as IndexPath) as! CategoryTableViewCell
             let category = categories[indexPath.row]
             cell.categoryName?.text = category.name
-            //cell.layer.cornerRadius = 10.0
             return cell
     }
     

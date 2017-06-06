@@ -8,6 +8,7 @@
 
 import UIKit
 import CoreData
+import SAConfettiView
 
 class ViewControllerTimer: UIViewController {
     
@@ -18,11 +19,15 @@ class ViewControllerTimer: UIViewController {
     var isTimerRunning = false
     var resumeTapped = false
     var chosenTimeInterval: Int = 0 //This is now chosen Time Interval an integer value!
+    let confettiView = SAConfettiView()
+
     
     @IBOutlet var taskLabel: UILabel!
     @IBOutlet var CountDownTimerLabel: UILabel!
     @IBOutlet var startButton: UIButton!
     @IBOutlet var snoozeButton: UIButton!
+    @IBOutlet var resetButton: UIButton!
+    @IBOutlet var endButton: UIButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -30,6 +35,15 @@ class ViewControllerTimer: UIViewController {
         seconds = chosenTimeInterval
         taskLabel.text = taskName
         CountDownTimerLabel.text = timeString(time: Double(chosenTimeInterval))
+        startButton.layer.cornerRadius = 10.0
+        startButton.layer.borderColor = UIColor.black.cgColor
+        startButton.layer.borderWidth = 2
+        resetButton.layer.cornerRadius = 10.0
+        resetButton.layer.borderColor = UIColor.black.cgColor
+        resetButton.layer.borderWidth = 2
+        snoozeButton.layer.cornerRadius = 10.0
+        snoozeButton.layer.borderColor = UIColor.black.cgColor
+        snoozeButton.layer.borderWidth = 2
     }
     //MARK: - method running timer
     func runTimer() {
@@ -58,6 +72,7 @@ class ViewControllerTimer: UIViewController {
     //MARK: - IBActions
     @IBAction func BackButtonTapped(_ sender: UIButton) {
         dismiss(animated: false, completion: nil)
+        confettiView.stopConfetti()
     }
     
     @IBAction func StartButtonTapped(_ sender: UIButton) {
@@ -83,7 +98,14 @@ class ViewControllerTimer: UIViewController {
         CountDownTimerLabel.text = timeString(time: TimeInterval(seconds))
         isTimerRunning = false
         self.snoozeButton.isEnabled = false
-        
     }
-    
+    @IBAction func endButtonTapped(_ sender: UIButton) {
+        confettiView = SAConfettiView(frame: self.view.bounds)
+        self.view.addSubview(confettiView)
+        confettiView.type = .Confetti
+        confettiView.colors = [UIColor.red, UIColor.green, UIColor.blue]
+        confettiView.intensity = 1.0
+        confettiView.startConfetti()
+        //Timer.scheduledTimer(timeInterval: TimeInterval(5), target: self, selector:(#selector(confettiView.stopConfetti)), userInfo:nil, repeats: false)
+    }
 }
