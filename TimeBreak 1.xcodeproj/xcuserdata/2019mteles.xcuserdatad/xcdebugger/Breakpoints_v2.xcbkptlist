@@ -10,11 +10,13 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "TimeBreak 1/ViewControllerTimer.swift"
-            timestampString = "518461733.048241"
+            timestampString = "520619445.455391"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "114"
-            endingLineNumber = "114">
+            startingLineNumber = "138"
+            endingLineNumber = "138"
+            landmarkName = "ViewControllerTimer"
+            landmarkType = "3">
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

@@ -19,7 +19,7 @@ class ViewControllerTimer: UIViewController {
     var isTimerRunning = false
     var resumeTapped = false
     var chosenTimeInterval: Int = 0 //This is now chosen Time Interval an integer value!
-    let confettiView = SAConfettiView()
+    var confettiView = SAConfettiView()
 
     
     @IBOutlet var taskLabel: UILabel!
@@ -38,9 +38,9 @@ class ViewControllerTimer: UIViewController {
         startButton.layer.cornerRadius = 10.0
         startButton.layer.borderColor = UIColor.black.cgColor
         startButton.layer.borderWidth = 2
-        resetButton.layer.cornerRadius = 10.0
-        resetButton.layer.borderColor = UIColor.black.cgColor
-        resetButton.layer.borderWidth = 2
+        endButton.layer.cornerRadius = 10.0
+        endButton.layer.borderColor = UIColor.black.cgColor
+        endButton.layer.borderWidth = 2
         snoozeButton.layer.cornerRadius = 10.0
         snoozeButton.layer.borderColor = UIColor.black.cgColor
         snoozeButton.layer.borderWidth = 2
@@ -55,12 +55,34 @@ class ViewControllerTimer: UIViewController {
     //MARK: - TableView updating timer
     func updateTimer(){
         if seconds < 1 {
+            timer.invalidate(timerCompleteAlert())
+        } else {
+            seconds -= 1
+            CountDownTimerLabel.text = timeString(time: TimeInterval(seconds))
+        }
+    }
+    func timerCompleteAlert() {
+        let alert = UIAlertController(title: "Time is up!", message: "Did you complete your task?", preferredStyle: .actionSheet)
+        let YesAction = UIAlertAction(title: "Yes, the task is completed", style: .destructive, handler: self.taskFinished)
+        let NoAction = UIAlertAction(title: "No, I need more time", style: .cancel, handler: self.addAdditionalTime)
+        alert.addAction(YesAction)
+        alert.addAction(NoAction)
+        self.present(alert, animated: true, completion: nil)
+    }
+    func addAdditionalTime(alertAction: UIAlertAction!) {
+        seconds = 900
+        timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: (#selector(ViewControllerTimer.updateTimer)), userInfo: nil, repeats: true)
+        isTimerRunning = true
+    }
+    func updateAdditionalTimer(alertAction: UIAlertAction!) {
+        if seconds < 1 {
             timer.invalidate()
         } else {
             seconds -= 1
             CountDownTimerLabel.text = timeString(time: TimeInterval(seconds))
         }
     }
+
     //MARK: - method for converting time
     func timeString(time:TimeInterval) -> String {
         let Hours = Int(time) / 3600
@@ -82,7 +104,7 @@ class ViewControllerTimer: UIViewController {
         }
     }
     
-    @IBAction func SnoozeButtonTapped(_ sender: UIButton) {
+    @IBAction func PauseButtonTapped(_ sender: UIButton) {
         if self .resumeTapped == false {
             timer.invalidate()
             self.resumeTapped = true
@@ -99,13 +121,16 @@ class ViewControllerTimer: UIViewController {
         isTimerRunning = false
         self.snoozeButton.isEnabled = false
     }
+    
     @IBAction func endButtonTapped(_ sender: UIButton) {
+       taskFinished(alertAction: nil)
+    }
+    func taskFinished (alertAction: UIAlertAction!) {
         confettiView = SAConfettiView(frame: self.view.bounds)
         self.view.addSubview(confettiView)
         confettiView.type = .Confetti
-        confettiView.colors = [UIColor.red, UIColor.green, UIColor.blue]
+        confettiView.colors = [UIColor.red, UIColor.green, UIColor.blue, UIColor.yellow, UIColor.purple ]
         confettiView.intensity = 1.0
         confettiView.startConfetti()
-        //Timer.scheduledTimer(timeInterval: TimeInterval(5), target: self, selector:(#selector(confettiView.stopConfetti)), userInfo:nil, repeats: false)
     }
 }
