@@ -16,12 +16,6 @@ class MenuViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        getStartedButton.layer.cornerRadius = 10.0
-        getStartedButton.layer.borderColor = UIColor.black.cgColor
-        getStartedButton.layer.borderWidth = 1
-        settingsButton.layer.cornerRadius = 10.0
-        settingsButton.layer.borderColor = UIColor.black.cgColor
-        settingsButton.layer.borderWidth = 1
         
     }
 
