@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16G29" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="KV9-eq-Fio">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12120" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="oxJ-fK-NDg">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12088"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -45,9 +45,6 @@
                                             <constraint firstAttribute="width" secondItem="pnd-a1-xIT" secondAttribute="height" multiplier="1:1" id="eed-8Z-ZrD"/>
                                         </constraints>
                                         <state key="normal" title="Button" image="TB-LOGO"/>
-                                        <connections>
-                                            <segue destination="KV9-eq-Fio" kind="show" id="LYz-U8-rkp"/>
-                                        </connections>
                                     </button>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -92,7 +89,7 @@
                                         <rect key="frame" x="0.0" y="28" width="338" height="53"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="l3v-JE-pPv" id="82u-D6-hmQ">
-                                            <rect key="frame" x="0.0" y="0.0" width="305" height="52"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="305" height="53"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SOC-ox-LvX">
@@ -168,7 +165,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="KFA-g6-dGp" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1592.8" y="85.907046476761622"/>
+            <point key="canvasLocation" x="1976.8" y="-269.41529235382313"/>
         </scene>
         <!--View Controller To Do Task-->
         <scene sceneID="irE-TT-d4a">
@@ -213,9 +210,6 @@
                                             <constraint firstAttribute="width" secondItem="DbS-YW-9ce" secondAttribute="height" multiplier="1:1" id="S6X-Mk-mP8"/>
                                         </constraints>
                                         <state key="normal" title="Button" image="TB-LOGO"/>
-                                        <connections>
-                                            <segue destination="KV9-eq-Fio" kind="show" id="FvP-TK-1ca"/>
-                                        </connections>
                                     </button>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -256,7 +250,7 @@
                                         <rect key="frame" x="0.0" y="28" width="338" height="73"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="1r6-Xk-A4R" id="QSD-MA-Tb6">
-                                            <rect key="frame" x="0.0" y="0.0" width="338" height="72"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="338" height="73"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6yu-SI-CV7">
@@ -336,7 +330,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="9b6-Hi-v3W" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2392.8000000000002" y="85.907046476761622"/>
+            <point key="canvasLocation" x="3428" y="-269.41529235382313"/>
         </scene>
         <!--Menu View Controller-->
         <scene sceneID="Vqx-F8-fDt">
@@ -434,6 +428,7 @@
                             <constraint firstItem="bzR-4G-V3e" firstAttribute="centerX" secondItem="mqC-pL-X4W" secondAttribute="centerX" id="zOH-Pw-Wn4"/>
                         </constraints>
                     </view>
+                    <navigationItem key="navigationItem" id="fBA-WG-pxP"/>
                     <connections>
                         <outlet property="getStartedButton" destination="Qdt-eC-3ED" id="ue5-lF-Px1"/>
                         <outlet property="settingsButton" destination="agf-jV-KDI" id="we7-J1-Fhw"/>
@@ -441,7 +436,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="gCW-9J-zzJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="829.60000000000002" y="81.409295352323838"/>
+            <point key="canvasLocation" x="-375" y="-269"/>
         </scene>
         <!--View Controller Add Task-->
         <scene sceneID="yeK-oZ-qgy">
@@ -473,9 +468,6 @@
                                             <constraint firstAttribute="width" secondItem="6NS-7y-FLB" secondAttribute="height" multiplier="1:1" id="Qis-VK-myv"/>
                                         </constraints>
                                         <state key="normal" title="Button" image="TB-LOGO"/>
-                                        <connections>
-                                            <segue destination="KV9-eq-Fio" kind="show" id="kCn-8W-CfH"/>
-                                        </connections>
                                     </button>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -606,12 +598,12 @@
                     </connections>
                 </tapGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="2433" y="813"/>
+            <point key="canvasLocation" x="3428" y="1155"/>
         </scene>
-        <!--View Controller-->
+        <!--Settings View Controller-->
         <scene sceneID="RZo-KC-H2J">
             <objects>
-                <viewController id="xb9-3v-Qc5" sceneMemberID="viewController">
+                <viewController id="xb9-3v-Qc5" customClass="SettingsViewController" customModule="TimeBreak_1" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="34H-ga-mU4"/>
                         <viewControllerLayoutGuide type="bottom" id="Pfp-kV-MVG"/>
@@ -636,9 +628,6 @@
                                     <constraint firstAttribute="width" secondItem="SZa-0M-qh5" secondAttribute="height" multiplier="1:1" id="Z8t-um-m5T"/>
                                 </constraints>
                                 <state key="normal" title="Button" image="TB-LOGO"/>
-                                <connections>
-                                    <segue destination="KV9-eq-Fio" kind="show" id="1s0-ya-Xv1"/>
-                                </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Settings" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AMx-Ra-aUS">
                                 <rect key="frame" x="124" y="30" width="127" height="44"/>
@@ -666,7 +655,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6ug-hg-gMp" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="829.60000000000002" y="751.57421289355329"/>
+            <point key="canvasLocation" x="-375" y="1155"/>
         </scene>
         <!--View Controller Timer-->
         <scene sceneID="vrv-dT-M2W">
@@ -711,9 +700,6 @@
                                             <constraint firstAttribute="width" secondItem="tV1-bJ-1nk" secondAttribute="height" multiplier="1:1" id="VDn-ub-3sN"/>
                                         </constraints>
                                         <state key="normal" title="Button" image="TB-LOGO"/>
-                                        <connections>
-                                            <segue destination="KV9-eq-Fio" kind="show" id="ovO-Qp-YHe"/>
-                                        </connections>
                                     </button>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -821,7 +807,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="So9-uL-zrR" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3164" y="86"/>
+            <point key="canvasLocation" x="4759.1999999999998" y="-269.41529235382313"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="wrq-tr-VDC">
@@ -839,7 +825,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="aOb-sX-rl6" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3121" y="824"/>
+            <point key="canvasLocation" x="468" y="2075"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="Vbt-EF-qS6">
@@ -898,7 +884,25 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="JWH-Nc-gzb" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="68" y="81"/>
+            <point key="canvasLocation" x="-1414" y="1155"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="om0-wL-cvg">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="oxJ-fK-NDg" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="3b3-so-DE2">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="KV9-eq-Fio" kind="relationship" relationship="rootViewController" id="VSo-A2-6o8"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="afl-u0-1Sx" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1694" y="-269"/>
         </scene>
     </scenes>
     <resources>
@@ -909,7 +913,6 @@
         <image name="plus button 2 (1)" width="505" height="505"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="ovO-Qp-YHe"/>
         <segue reference="Fcu-qb-mWR"/>
     </inferredMetricsTieBreakers>
 </document>

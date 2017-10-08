@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		3FD5C94F8C33ABC1422773A3 /* Pods_TimeBreak_1.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 75ADEDCE0A17B1FA82348A14 /* Pods_TimeBreak_1.framework */; };
+		4B1213931F8AE2CA00B0CEF4 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B1213921F8AE2CA00B0CEF4 /* SettingsViewController.swift */; };
 		C517CCDB1E2C4A4500B0E407 /* MainViewControllerToDo.swift in Sources */ = {isa = PBXBuildFile; fileRef = C517CCDA1E2C4A4500B0E407 /* MainViewControllerToDo.swift */; };
 		C517CCDD1E2C4AE800B0E407 /* ViewControllerToDoTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = C517CCDC1E2C4AE800B0E407 /* ViewControllerToDoTask.swift */; };
 		C517CCDF1E2C4B2700B0E407 /* ViewControllerAddTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = C517CCDE1E2C4B2700B0E407 /* ViewControllerAddTask.swift */; };
@@ -26,6 +27,7 @@
 
 /* Begin PBXFileReference section */
 		3731024BD552C9B1DA52CBE3 /* Pods-TimeBreak 1.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TimeBreak 1.debug.xcconfig"; path = "Pods/Target Support Files/Pods-TimeBreak 1/Pods-TimeBreak 1.debug.xcconfig"; sourceTree = "<group>"; };
+		4B1213921F8AE2CA00B0CEF4 /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		75ADEDCE0A17B1FA82348A14 /* Pods_TimeBreak_1.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TimeBreak_1.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		93B50923B2357D208E6B3ED7 /* Pods-TimeBreak 1.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TimeBreak 1.release.xcconfig"; path = "Pods/Target Support Files/Pods-TimeBreak 1/Pods-TimeBreak 1.release.xcconfig"; sourceTree = "<group>"; };
 		C517CCDA1E2C4A4500B0E407 /* MainViewControllerToDo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainViewControllerToDo.swift; sourceTree = "<group>"; };
@@ -58,6 +60,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		4B1213911F8AE2A600B0CEF4 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				C5BD30491E6F52830007E954 /* TaskTableViewCell.swift */,
+				C5AC7CB71E943A490021E6D0 /* CategoryTableViewCell.swift */,
+			);
+			name = Views;
+			sourceTree = "<group>";
+		};
 		60E1E2EF865E304480B86963 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -103,14 +114,14 @@
 				C517CCDC1E2C4AE800B0E407 /* ViewControllerToDoTask.swift */,
 				C517CCE01E2C4B4200B0E407 /* ViewControllerTimer.swift */,
 				C517CCDE1E2C4B2700B0E407 /* ViewControllerAddTask.swift */,
-				C5BD30491E6F52830007E954 /* TaskTableViewCell.swift */,
-				C5AC7CB71E943A490021E6D0 /* CategoryTableViewCell.swift */,
 				C56D84E21F89C1A600C39D72 /* ViewControllerInfo.swift */,
+				4B1213911F8AE2A600B0CEF4 /* Views */,
 				C5EACD4E1DE4E07600B47342 /* Main.storyboard */,
 				C5EACD541DE4E07600B47342 /* Assets.xcassets */,
 				C5EACD591DE4E07600B47342 /* Info.plist */,
 				C5EACD561DE4E07600B47342 /* LaunchScreen.storyboard */,
 				C51BBD4F1EC10A8A0040AB2A /* CategoryTaskModel.xcdatamodeld */,
+				4B1213921F8AE2CA00B0CEF4 /* SettingsViewController.swift */,
 			);
 			path = "TimeBreak 1";
 			sourceTree = "<group>";
@@ -250,6 +261,7 @@
 				C5EACD4B1DE4E07600B47342 /* AppDelegate.swift in Sources */,
 				C517CCDF1E2C4B2700B0E407 /* ViewControllerAddTask.swift in Sources */,
 				C5AC7CB81E943A490021E6D0 /* CategoryTableViewCell.swift in Sources */,
+				4B1213931F8AE2CA00B0CEF4 /* SettingsViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
