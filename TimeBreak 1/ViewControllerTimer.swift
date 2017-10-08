@@ -44,6 +44,9 @@ class ViewControllerTimer: UIViewController {
         snoozeButton.layer.cornerRadius = 10.0
         snoozeButton.layer.borderColor = UIColor.black.cgColor
         snoozeButton.layer.borderWidth = 2
+        pauseButton.layer.cornerRadius = 10.0
+        pauseButton.layer.borderColor = UIColor.black.cgColor
+        pauseButton.layer.borderWidth = 2
     }
     //MARK: - method running timer
     func runTimer() {
@@ -104,7 +107,7 @@ class ViewControllerTimer: UIViewController {
         }
     }
     
-    @IBAction func PauseButtonTapped(_ sender: UIButton) {
+    @IBAction func pauseButtonTapped(_ sender: UIButton) {
         if self .resumeTapped == false {
             timer.invalidate()
             self.resumeTapped = true
@@ -113,6 +116,10 @@ class ViewControllerTimer: UIViewController {
             self.resumeTapped = false
         }
     }
+    
+    @IBAction func snoozeButtonTapped(_ sender: UIButton) {
+    }
+    
 
     @IBAction func ResetButtonTapped(_ sender: UIButton) {
         timer.invalidate()
@@ -124,6 +131,7 @@ class ViewControllerTimer: UIViewController {
     
     @IBAction func endButtonTapped(_ sender: UIButton) {
        taskFinished(alertAction: nil)
+       timer.invalidate()
     }
     func taskFinished (alertAction: UIAlertAction!) {
         confettiView = SAConfettiView(frame: self.view.bounds)
@@ -132,5 +140,13 @@ class ViewControllerTimer: UIViewController {
         confettiView.colors = [UIColor.red, UIColor.green, UIColor.blue, UIColor.yellow, UIColor.purple ]
         confettiView.intensity = 1.0
         confettiView.startConfetti()
+        
+        perform(#selector(stopConfetti), with: self, afterDelay: 3)
+        
+        
     }
+    func stopConfetti () {
+        confettiView.stopConfetti()
+    }
+    
 }

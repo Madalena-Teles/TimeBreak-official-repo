@@ -15,6 +15,7 @@
 		C51BBD511EC10A8A0040AB2A /* CategoryTaskModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = C51BBD4F1EC10A8A0040AB2A /* CategoryTaskModel.xcdatamodeld */; };
 		C53FFCEA1EAFDEC700F7D707 /* CoreDataStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = C53FFCE91EAFDEC700F7D707 /* CoreDataStack.swift */; };
 		C54F22C51EDE0730005E41A3 /* MenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C54F22C41EDE0730005E41A3 /* MenuViewController.swift */; };
+		C56D84E31F89C1A600C39D72 /* ViewControllerInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = C56D84E21F89C1A600C39D72 /* ViewControllerInfo.swift */; };
 		C5AC7CB81E943A490021E6D0 /* CategoryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5AC7CB71E943A490021E6D0 /* CategoryTableViewCell.swift */; };
 		C5BD304A1E6F52830007E954 /* TaskTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5BD30491E6F52830007E954 /* TaskTableViewCell.swift */; };
 		C5EACD4B1DE4E07600B47342 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5EACD4A1DE4E07600B47342 /* AppDelegate.swift */; };
@@ -34,6 +35,7 @@
 		C51BBD501EC10A8A0040AB2A /* CategoryTaskModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = CategoryTaskModel.xcdatamodel; sourceTree = "<group>"; };
 		C53FFCE91EAFDEC700F7D707 /* CoreDataStack.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreDataStack.swift; sourceTree = "<group>"; };
 		C54F22C41EDE0730005E41A3 /* MenuViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuViewController.swift; sourceTree = "<group>"; };
+		C56D84E21F89C1A600C39D72 /* ViewControllerInfo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewControllerInfo.swift; sourceTree = "<group>"; };
 		C5AC7CB71E943A490021E6D0 /* CategoryTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CategoryTableViewCell.swift; sourceTree = "<group>"; };
 		C5BD30491E6F52830007E954 /* TaskTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TaskTableViewCell.swift; sourceTree = "<group>"; };
 		C5EACD471DE4E07600B47342 /* TimeBreak 1.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "TimeBreak 1.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -103,6 +105,7 @@
 				C517CCDE1E2C4B2700B0E407 /* ViewControllerAddTask.swift */,
 				C5BD30491E6F52830007E954 /* TaskTableViewCell.swift */,
 				C5AC7CB71E943A490021E6D0 /* CategoryTableViewCell.swift */,
+				C56D84E21F89C1A600C39D72 /* ViewControllerInfo.swift */,
 				C5EACD4E1DE4E07600B47342 /* Main.storyboard */,
 				C5EACD541DE4E07600B47342 /* Assets.xcassets */,
 				C5EACD591DE4E07600B47342 /* Info.plist */,
@@ -147,7 +150,7 @@
 				TargetAttributes = {
 					C5EACD461DE4E07600B47342 = {
 						CreatedOnToolsVersion = 7.3.1;
-						DevelopmentTeam = 7G924XGX5J;
+						DevelopmentTeam = SF4ZQ7FYZ5;
 						LastSwiftMigration = 0810;
 					};
 				};
@@ -243,6 +246,7 @@
 				C517CCE11E2C4B4200B0E407 /* ViewControllerTimer.swift in Sources */,
 				C51BBD511EC10A8A0040AB2A /* CategoryTaskModel.xcdatamodeld in Sources */,
 				C53FFCEA1EAFDEC700F7D707 /* CoreDataStack.swift in Sources */,
+				C56D84E31F89C1A600C39D72 /* ViewControllerInfo.swift in Sources */,
 				C5EACD4B1DE4E07600B47342 /* AppDelegate.swift in Sources */,
 				C517CCDF1E2C4B2700B0E407 /* ViewControllerAddTask.swift in Sources */,
 				C5AC7CB81E943A490021E6D0 /* CategoryTableViewCell.swift in Sources */,
@@ -364,10 +368,10 @@
 			baseConfigurationReference = 3731024BD552C9B1DA52CBE3 /* Pods-TimeBreak 1.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = 7G924XGX5J;
+				DEVELOPMENT_TEAM = SF4ZQ7FYZ5;
 				INFOPLIST_FILE = "TimeBreak 1/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "Dwight-School.TimeBreak-1";
+				PRODUCT_BUNDLE_IDENTIFIER = MadalenaTeles.TimeBreak;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
 			};
@@ -378,10 +382,10 @@
 			baseConfigurationReference = 93B50923B2357D208E6B3ED7 /* Pods-TimeBreak 1.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = 7G924XGX5J;
+				DEVELOPMENT_TEAM = SF4ZQ7FYZ5;
 				INFOPLIST_FILE = "TimeBreak 1/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "Dwight-School.TimeBreak-1";
+				PRODUCT_BUNDLE_IDENTIFIER = MadalenaTeles.TimeBreak;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
 			};
