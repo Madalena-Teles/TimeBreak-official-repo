@@ -10,12 +10,48 @@ import UIKit
 
 class SettingsViewController: UIViewController {
 
+    
+    @IBOutlet weak var notifsSwitch: UISwitch!
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
     }
 
+    
+    
+    @IBAction func notifsSwitchTapped(_ sender: UISwitch) {
+        
+        //Finish notification settings.
+    }
+    
+    
+
+    @IBAction func acknowTapped(_ sender: UIButton) {
+        
+        
+    }
+
+    
+
+    @IBAction func contactTapped(_ sender: UIButton) {
+        
+        
+    }
+    
+    @IBAction func shareTapped(_ sender: UIButton) {
+    }
+    
+    
+    @IBAction func backArrowTapped(_ sender: UIButton) {
+        
+        self.dismiss(animated: false, completion: nil)
+    }
+    
+    
+    
+    
     
 //    - (void) shareArticle:(NSString *)articleURL {
 //    NSArray *items;

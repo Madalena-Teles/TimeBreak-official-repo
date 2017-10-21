@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		3FD5C94F8C33ABC1422773A3 /* Pods_TimeBreak_1.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 75ADEDCE0A17B1FA82348A14 /* Pods_TimeBreak_1.framework */; };
 		4B1213931F8AE2CA00B0CEF4 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B1213921F8AE2CA00B0CEF4 /* SettingsViewController.swift */; };
+		4BD730E01F965D7C00442F48 /* InfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BD730DF1F965D7C00442F48 /* InfoViewController.swift */; };
+		4BD730E21F96654900442F48 /* CategoryInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BD730E11F96654900442F48 /* CategoryInfoViewController.swift */; };
 		C517CCDB1E2C4A4500B0E407 /* MainViewControllerToDo.swift in Sources */ = {isa = PBXBuildFile; fileRef = C517CCDA1E2C4A4500B0E407 /* MainViewControllerToDo.swift */; };
 		C517CCDD1E2C4AE800B0E407 /* ViewControllerToDoTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = C517CCDC1E2C4AE800B0E407 /* ViewControllerToDoTask.swift */; };
 		C517CCDF1E2C4B2700B0E407 /* ViewControllerAddTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = C517CCDE1E2C4B2700B0E407 /* ViewControllerAddTask.swift */; };
@@ -28,6 +30,8 @@
 /* Begin PBXFileReference section */
 		3731024BD552C9B1DA52CBE3 /* Pods-TimeBreak 1.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TimeBreak 1.debug.xcconfig"; path = "Pods/Target Support Files/Pods-TimeBreak 1/Pods-TimeBreak 1.debug.xcconfig"; sourceTree = "<group>"; };
 		4B1213921F8AE2CA00B0CEF4 /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
+		4BD730DF1F965D7C00442F48 /* InfoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InfoViewController.swift; sourceTree = "<group>"; };
+		4BD730E11F96654900442F48 /* CategoryInfoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CategoryInfoViewController.swift; sourceTree = "<group>"; };
 		75ADEDCE0A17B1FA82348A14 /* Pods_TimeBreak_1.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TimeBreak_1.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		93B50923B2357D208E6B3ED7 /* Pods-TimeBreak 1.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TimeBreak 1.release.xcconfig"; path = "Pods/Target Support Files/Pods-TimeBreak 1/Pods-TimeBreak 1.release.xcconfig"; sourceTree = "<group>"; };
 		C517CCDA1E2C4A4500B0E407 /* MainViewControllerToDo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainViewControllerToDo.swift; sourceTree = "<group>"; };
@@ -122,6 +126,8 @@
 				C5EACD561DE4E07600B47342 /* LaunchScreen.storyboard */,
 				C51BBD4F1EC10A8A0040AB2A /* CategoryTaskModel.xcdatamodeld */,
 				4B1213921F8AE2CA00B0CEF4 /* SettingsViewController.swift */,
+				4BD730DF1F965D7C00442F48 /* InfoViewController.swift */,
+				4BD730E11F96654900442F48 /* CategoryInfoViewController.swift */,
 			);
 			path = "TimeBreak 1";
 			sourceTree = "<group>";
@@ -161,7 +167,7 @@
 				TargetAttributes = {
 					C5EACD461DE4E07600B47342 = {
 						CreatedOnToolsVersion = 7.3.1;
-						DevelopmentTeam = SF4ZQ7FYZ5;
+						DevelopmentTeam = HUSBP9Y42K;
 						LastSwiftMigration = 0810;
 					};
 				};
@@ -250,6 +256,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4BD730E21F96654900442F48 /* CategoryInfoViewController.swift in Sources */,
 				C5BD304A1E6F52830007E954 /* TaskTableViewCell.swift in Sources */,
 				C54F22C51EDE0730005E41A3 /* MenuViewController.swift in Sources */,
 				C517CCDD1E2C4AE800B0E407 /* ViewControllerToDoTask.swift in Sources */,
@@ -259,6 +266,7 @@
 				C53FFCEA1EAFDEC700F7D707 /* CoreDataStack.swift in Sources */,
 				C56D84E31F89C1A600C39D72 /* ViewControllerInfo.swift in Sources */,
 				C5EACD4B1DE4E07600B47342 /* AppDelegate.swift in Sources */,
+				4BD730E01F965D7C00442F48 /* InfoViewController.swift in Sources */,
 				C517CCDF1E2C4B2700B0E407 /* ViewControllerAddTask.swift in Sources */,
 				C5AC7CB81E943A490021E6D0 /* CategoryTableViewCell.swift in Sources */,
 				4B1213931F8AE2CA00B0CEF4 /* SettingsViewController.swift in Sources */,
@@ -380,7 +388,7 @@
 			baseConfigurationReference = 3731024BD552C9B1DA52CBE3 /* Pods-TimeBreak 1.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = SF4ZQ7FYZ5;
+				DEVELOPMENT_TEAM = HUSBP9Y42K;
 				INFOPLIST_FILE = "TimeBreak 1/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = MadalenaTeles.TimeBreak;
@@ -394,7 +402,7 @@
 			baseConfigurationReference = 93B50923B2357D208E6B3ED7 /* Pods-TimeBreak 1.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = SF4ZQ7FYZ5;
+				DEVELOPMENT_TEAM = HUSBP9Y42K;
 				INFOPLIST_FILE = "TimeBreak 1/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = MadalenaTeles.TimeBreak;

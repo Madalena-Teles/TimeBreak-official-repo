@@ -44,9 +44,9 @@ class ViewControllerTimer: UIViewController {
         snoozeButton.layer.cornerRadius = 10.0
         snoozeButton.layer.borderColor = UIColor.black.cgColor
         snoozeButton.layer.borderWidth = 2
-        pauseButton.layer.cornerRadius = 10.0
-        pauseButton.layer.borderColor = UIColor.black.cgColor
-        pauseButton.layer.borderWidth = 2
+        snoozeButton.layer.cornerRadius = 10.0
+        snoozeButton.layer.borderColor = UIColor.black.cgColor
+        snoozeButton.layer.borderWidth = 2
     }
     //MARK: - method running timer
     func runTimer() {

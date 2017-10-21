@@ -24,6 +24,17 @@ class MainViewControllerToDo: UIViewController, UITableViewDataSource , UITableV
         tableView.delegate = self
         tableView.dataSource = self
         getData() // fetch data in coredata
+       
+    
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+//        let height: CGFloat = 100
+//        let bounds = self.navigationController!.navigationBar.bounds
+//        self.navigationController?.navigationBar.frame = CGRect(x: 0, y: 0, width: bounds.width, height: bounds.height + height)
+        
+        
+        self.title = "Hello"
     }
     
     // MARK: - TableView methods
@@ -128,17 +139,40 @@ class MainViewControllerToDo: UIViewController, UITableViewDataSource , UITableV
     
       override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if (segue.identifier == "categorySegue"){
-            let destViewController = segue.destination as! ViewControllerToDoTask
+            
+            let destNavController = segue.destination as! UINavigationController
+            let targetController = destNavController.topViewController as! ViewControllerToDoTask
+            
+//            let targetVC = segue.destination as! ViewControllerToDoTask
+            
+            
             if let indexPath = self.tableView.indexPathForSelectedRow {
                 let selectedCategory = categories[indexPath.row]
-                destViewController.categoryPassed = selectedCategory
+                targetController.categoryPassed = selectedCategory
             }
         }
      }
+    
+
+    @IBAction func mainButtonTapped(_ sender: UIButton) {
+        
+        self.dismiss(animated: false, completion: nil)
+    }
+    
+    
+    
+    
 }
 
 extension Category {
     static var fetch: NSFetchRequest<Category> {
         return NSFetchRequest<Category>(entityName: "Category")
-    } ///
+    }
 }
+
+//extension UINavigationBar {
+
+//    open override func sizeThatFits(_ size: CGSize) -> CGSize {
+//        return CGSize(width: bounds.width, height: 100)
+//    }
+//}

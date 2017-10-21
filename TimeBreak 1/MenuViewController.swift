@@ -18,16 +18,33 @@ class MenuViewController: UIViewController {
 
         
     }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
     
     @IBAction func getStartedButtonTapped(_ sender: UIButton) {
     }
 
     @IBAction func settingsButtonTapped(_ sender: UIButton) {
+    }
+    
+    //This is how to get the info vc to float over the menu vc.
+    @IBAction func infoButtonTapped(_ sender: UIButton) {
+        
+        let vc = self.storyboard?.instantiateViewController(withIdentifier: "menuInfoVC") as! InfoViewController
+        
+        vc.view.backgroundColor = .clear
+        vc.modalPresentationStyle = .overCurrentContext
+        
+        self.present(vc, animated: false, completion: nil)
+        
+        
+//        let vc =
+//            storyboard?.instantiateInitialViewController() as! InfoViewController
+//        vc.view.backgroundColor = .clear
+//        vc.modalPresentationStyle = .overCurrentContext
+//        
+//        self.present(vc, animated: true, completion: nil)
+        
+//        MenuViewController.presentViewController(vc, animated: true, completion: nil)
+        
     }
     /*
     // MARK: - Navigation

@@ -145,7 +145,7 @@ class ViewControllerToDoTask: UIViewController, UITableViewDataSource , UITableV
     }
     
     @IBAction func AddTaskButtonTapped(_ sender: UIButton) {
-        performSegue(withIdentifier: "addTaskButton", sender: self)
+//        performSegue(withIdentifier: "addTaskButton", sender: self)
 
     }
 
