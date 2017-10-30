@@ -12,41 +12,25 @@ class InfoViewController: UIViewController, UIViewControllerTransitioningDelegat
 
 //    var dimmingView: UIView
     
+    @IBOutlet weak var backgroundView: UIView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        prepareUI()
         let tap: UITapGestureRecognizer = UITapGestureRecognizer.init(target: self, action: #selector(dismissViewController(sender:)))
         self.view.addGestureRecognizer(tap)
 
-//        navigationController?.navigationBar.setBackgroundImage(UIImage.new for: UIBarMetrics.default)
-//        navigationController?.navigationBar.isTranslucent = true
-//        navigationController?.navigationBar.shadowImage = UIImage.init(named: <#T##String#>)
-        
-
+    }
+    
+    func prepareUI() {
+        backgroundView.layer.cornerRadius = 10
     }
     
     required init?(coder: NSCoder) {
         super.init(coder: coder)
-        
         self.modalPresentationStyle = UIModalPresentationStyle.custom
         self.transitioningDelegate = self
     }
-    
-//    func presentationController(forPresented presented: UIViewController, presenting: UIViewController?, source: UIViewController) -> UIPresentationController? {
-//    
-//        let presentationController = UIPresentationController.init(presentedViewController: presented, presenting: presenting)
-//        
-//        presentationController.presentationStyle =  UIModalPresentationStyle.overCurrentContext
-//        
-//        return presentationController
-//    }
-//    
-    
-
-    
-//    - (UIPresentationController *)presentationControllerForPresentedViewController:(UIViewController *)presented presentingViewController:(UIViewController *)presenting sourceViewController:(UIViewController *)source
-//    {
-//    return [[LargeFormatPresentation alloc] initWithPresentedViewController:presented presentingViewController:presenting];
-//    }
     
     // MARK: - Navigation
     

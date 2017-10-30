@@ -16,66 +16,108 @@ class ViewControllerAddTask: UIViewController {
     var chosenDate = TimeInterval()
     //var delegate: DataSentDelegate?
     
+    var passedTask: Task?
+    
     @IBOutlet var myTaskTextField: UITextField!
+    @IBOutlet weak var startDatePicker: UIDatePicker!
+    @IBOutlet var datePicker: UIDatePicker!
+    @IBOutlet var TimeForCompletionLabel: UILabel!
+    
     @IBOutlet var StartingDateOfTaskTextField: UITextField!
     @IBOutlet var DueDateOfTaskTextField: UITextField!
-    @IBOutlet var TimeForCompletionLabel: UILabel!
-    @IBOutlet var datePicker: UIDatePicker!
     
+    @IBOutlet weak var startPickerBackground: UIView!
+    
+
     override func viewDidLoad() {
         super.viewDidLoad()
+        startDatePicker.minimumDate = Date()
+        
         chosenDate = datePicker.countDownDuration
+        if passedTask != nil {
+            self.title = "Edit your Task!"
+            if let name = passedTask?.name {
+                myTaskTextField.text = name
+            }
+            if let startDate = passedTask?.startDate {
+                startDatePicker!.date = startDate as Date
+            } else {
+                startDatePicker!.date = Date()
+            }
+        }
     }
     
+    //MARK: - UI Preparation
     
+    func prepareUI() {
+        startPickerBackground.layer.cornerRadius = 10
+
+        let whiteColor = UIColor(red: 255.0/255.0, green: 255.0/255.0, blue: 250.0/255.0, alpha: 0.5 )
+        
+        startDatePicker.layer.backgroundColor = whiteColor.cgColor
     
-    // MARK: - IBActions- what happens when the add task button is tapped- all the things in that page
+        startDatePicker.layer.cornerRadius = 10
+        
+    }
+    
+    //MARK: - UI Controls
+    
     @IBAction func AddTaskButtonTapped(_ sender: UIButton) {
-        //if delegate != nil {
-            if myTaskTextField.text != "" {
-                let newTask = Task(context: CoreDataStack.shared.context)
-                newTask.name = myTaskTextField.text!
-                
-                let chosenDate = datePicker.date
-                let calendar = Calendar.current
-                let hours = calendar.component(.hour, from: chosenDate)
-                let minutes = calendar.component(.minute, from: chosenDate)
-                let hoursToMinutes = hours * 60
-                let totalTimeInMinutes = hoursToMinutes + minutes
-                let secondsTimeInterval = totalTimeInMinutes * 60
-                
-                
-                newTask.time = Int64(secondsTimeInterval)
-                CoreDataStack.shared.saveContext() // data was saved
+        if myTaskTextField.text != "" && StartingDateOfTaskTextField.text != "" {
+            
+            if passedTask != nil {
+                deleteEditedTask(task:passedTask!)
             }
             
-           // if let taskName = myTaskTextField.text {
-               // print(myTaskTextField.text!)
-                
-                //delegate?.userDidEnterTaskName(taskName: taskName) //This is where the passing starts/happens.
-                //dismiss(animated: true, completion: nil)
-            //}
+            let newTask = Task(context: CoreDataStack.shared.context)
+            newTask.name = myTaskTextField.text!
             
-            //Here we get the calendar components from the date picker. In our case we have hours and minutes.
-        
-        
-            //This prints the amount of hours and minutes the user chooses.
-            //print(hours)
-            //print(minutes)
-        
-            //We then convert these hours and minutes to total value of seconds.
-            //This will come in handy when we want to start our timer. So we do the conversion here and then pass the seconds value to the To Do View Controller and then to the Timer View Controller.
-
-
+            let chosenDate = datePicker.date
+            let calendar = Calendar.current
+            let hours = calendar.component(.hour, from: chosenDate)
+            let minutes = calendar.component(.minute, from: chosenDate)
+            let hoursToMinutes = hours * 60
+            let totalTimeInMinutes = hoursToMinutes + minutes
+            let secondsTimeInterval = totalTimeInMinutes * 60
             
-            //self.delegate?.userDidEnterChosenTimeInterval(chosenTimeInterval: secondsTimeInterval)
-            self.dismiss(animated: true, completion: nil)
-  
+            newTask.timeInSeconds = Int64(secondsTimeInterval)
+            newTask.startDate = startDatePicker.date as NSDate
+            
+            CoreDataStack.shared.saveContext() // data was saved
+            
+            //TO DO: Set up local notification for start time.
+            
+            navigationController?.popViewController(animated: true)
+            
+        } else {
+            infoIncompleteAlert()
         }
-    //}
+    }
+    
+    func infoIncompleteAlert() {
+        let alert = UIAlertController(title: "Missing Information", message: "Please make sure to add a name, start time and duration.", preferredStyle: .actionSheet)
+        let okAction = UIAlertAction(title: "Ok", style: UIAlertActionStyle.default, handler: nil)
+        alert.addAction(okAction)
+        self.present(alert, animated: true, completion: nil)
+    }
+
+    func deleteEditedTask(task:Task) {
+        let context: NSManagedObjectContext = CoreDataStack.shared.context
+        context.delete(task as NSManagedObject)
+        let _ : NSError! = nil
+        do {
+            try context.save()
+        } catch {
+            print("error: \(error)")
+        }
+    }
+    
+    @IBAction func backButtonTapped(_ sender: UIButton) {
+        navigationController?.popViewController(animated: true)
+    }
     
     @IBAction func CancelButtonTapped(_ sender: UIButton) {
-        dismiss(animated: false, completion: nil)
+        navigationController?.popViewController(animated: true)
     }
     
     @IBAction func gestureTapped(_ sender: UITapGestureRecognizer) {

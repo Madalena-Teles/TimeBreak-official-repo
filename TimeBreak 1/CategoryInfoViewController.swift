@@ -10,8 +10,11 @@ import UIKit
 
 class CategoryInfoViewController: UIViewController, UIViewControllerTransitioningDelegate {
 
+    @IBOutlet weak var backgroundView: UIView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        prepareUI()
 
         let tap: UITapGestureRecognizer = UITapGestureRecognizer.init(target: self, action: #selector(dismissViewController(sender:)))
         self.view.addGestureRecognizer(tap)
@@ -19,15 +22,16 @@ class CategoryInfoViewController: UIViewController, UIViewControllerTransitionin
     
     }
     
+    func prepareUI() {
+        backgroundView.layer.cornerRadius = 10
+    }
+    
     required init?(coder: NSCoder) {
         super.init(coder: coder)
-        
         self.modalPresentationStyle = UIModalPresentationStyle.custom
         self.transitioningDelegate = self
     }
-
     
-
     // MARK: - Navigation
     
     func dismissViewController(sender : UIButton) {

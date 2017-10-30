@@ -34,7 +34,7 @@ class MainViewControllerToDo: UIViewController, UITableViewDataSource , UITableV
 //        self.navigationController?.navigationBar.frame = CGRect(x: 0, y: 0, width: bounds.width, height: bounds.height + height)
         
         
-        self.title = "Hello"
+        self.title = "Add a Category!"
     }
     
     // MARK: - TableView methods
@@ -143,9 +143,6 @@ class MainViewControllerToDo: UIViewController, UITableViewDataSource , UITableV
             let destNavController = segue.destination as! UINavigationController
             let targetController = destNavController.topViewController as! ViewControllerToDoTask
             
-//            let targetVC = segue.destination as! ViewControllerToDoTask
-            
-            
             if let indexPath = self.tableView.indexPathForSelectedRow {
                 let selectedCategory = categories[indexPath.row]
                 targetController.categoryPassed = selectedCategory
@@ -153,6 +150,7 @@ class MainViewControllerToDo: UIViewController, UITableViewDataSource , UITableV
         }
      }
     
+    // MARK: - UI Controls
 
     @IBAction func mainButtonTapped(_ sender: UIButton) {
         
@@ -160,8 +158,15 @@ class MainViewControllerToDo: UIViewController, UITableViewDataSource , UITableV
     }
     
     
-    
-    
+    @IBAction func infoButtonTapped(_ sender: UIButton) {
+            let vc = self.storyboard?.instantiateViewController(withIdentifier: "menuCategoryInfoVC") as! CategoryInfoViewController
+            
+            vc.view.backgroundColor = .clear
+            vc.modalPresentationStyle = .overCurrentContext
+            
+            self.present(vc, animated: false, completion: nil)
+
+    }
 }
 
 extension Category {
@@ -169,10 +174,3 @@ extension Category {
         return NSFetchRequest<Category>(entityName: "Category")
     }
 }
-
-//extension UINavigationBar {
-
-//    open override func sizeThatFits(_ size: CGSize) -> CGSize {
-//        return CGSize(width: bounds.width, height: 100)
-//    }
-//}

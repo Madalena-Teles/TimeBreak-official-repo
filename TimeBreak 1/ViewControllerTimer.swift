@@ -26,15 +26,23 @@ class ViewControllerTimer: UIViewController {
     @IBOutlet var CountDownTimerLabel: UILabel!
     @IBOutlet var startButton: UIButton!
     @IBOutlet var snoozeButton: UIButton!
-    @IBOutlet var resetButton: UIButton!
     @IBOutlet var endButton: UIButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        prepareUI()
         //Now we assign the chosen time interval to "seconds" and our timer can easily start counting down the seconds which is what the chosenTimeInterval represents!!
         seconds = chosenTimeInterval
         taskLabel.text = taskName
         CountDownTimerLabel.text = timeString(time: Double(chosenTimeInterval))
+        
+        snoozeButton.isEnabled = false
+        endButton.isEnabled = false
+    }
+    
+    //MARK: - UI Preparation
+    
+    func prepareUI() {
         startButton.layer.cornerRadius = 10.0
         startButton.layer.borderColor = UIColor.black.cgColor
         startButton.layer.borderWidth = 2
@@ -48,6 +56,7 @@ class ViewControllerTimer: UIViewController {
         snoozeButton.layer.borderColor = UIColor.black.cgColor
         snoozeButton.layer.borderWidth = 2
     }
+    
     //MARK: - method running timer
     func runTimer() {
         seconds = chosenTimeInterval
@@ -55,6 +64,7 @@ class ViewControllerTimer: UIViewController {
         isTimerRunning = true
         self.snoozeButton.isEnabled = true
     }
+    
     //MARK: - TableView updating timer
     func updateTimer(){
         if seconds < 1 {
@@ -64,6 +74,7 @@ class ViewControllerTimer: UIViewController {
             CountDownTimerLabel.text = timeString(time: TimeInterval(seconds))
         }
     }
+    
     func timerCompleteAlert() {
         let alert = UIAlertController(title: "Time is up!", message: "Did you complete your task?", preferredStyle: .actionSheet)
         let YesAction = UIAlertAction(title: "Yes, the task is completed", style: .destructive, handler: self.taskFinished)
@@ -72,11 +83,13 @@ class ViewControllerTimer: UIViewController {
         alert.addAction(NoAction)
         self.present(alert, animated: true, completion: nil)
     }
+    
     func addAdditionalTime(alertAction: UIAlertAction!) {
-        seconds = 900
+        seconds = 960
         timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: (#selector(ViewControllerTimer.updateTimer)), userInfo: nil, repeats: true)
         isTimerRunning = true
     }
+    
     func updateAdditionalTimer(alertAction: UIAlertAction!) {
         if seconds < 1 {
             timer.invalidate()
@@ -95,19 +108,20 @@ class ViewControllerTimer: UIViewController {
     }
     
     //MARK: - IBActions
-    @IBAction func BackButtonTapped(_ sender: UIButton) {
-        dismiss(animated: false, completion: nil)
-        confettiView.stopConfetti()
-    }
     
     @IBAction func StartButtonTapped(_ sender: UIButton) {
+        snoozeButton.isEnabled = true
+        endButton.isEnabled = true
+        
         if isTimerRunning == false {
             runTimer(isTimerRunning = true)
             self.startButton.isEnabled = false
         }
     }
     
-    @IBAction func pauseButtonTapped(_ sender: UIButton) {
+    @IBAction func snoozeButtonTapped(_ sender: UIButton) {
+        alertForSnooze()
+        
         if self .resumeTapped == false {
             timer.invalidate()
             self.resumeTapped = true
@@ -117,22 +131,17 @@ class ViewControllerTimer: UIViewController {
         }
     }
     
-    @IBAction func snoozeButtonTapped(_ sender: UIButton) {
-    }
-    
-
-    @IBAction func ResetButtonTapped(_ sender: UIButton) {
-        timer.invalidate()
-        seconds = chosenTimeInterval
-        CountDownTimerLabel.text = timeString(time: TimeInterval(seconds))
-        isTimerRunning = false
-        self.snoozeButton.isEnabled = false
-    }
-    
     @IBAction func endButtonTapped(_ sender: UIButton) {
-       taskFinished(alertAction: nil)
-       timer.invalidate()
+        taskFinished(alertAction: nil)
+        timer.invalidate()
+
     }
+    
+    @IBAction func BackButtonTapped(_ sender: UIButton) {
+        dismiss(animated: false, completion: nil)
+        confettiView.stopConfetti()
+    }
+    
     func taskFinished (alertAction: UIAlertAction!) {
         confettiView = SAConfettiView(frame: self.view.bounds)
         self.view.addSubview(confettiView)
@@ -140,13 +149,50 @@ class ViewControllerTimer: UIViewController {
         confettiView.colors = [UIColor.red, UIColor.green, UIColor.blue, UIColor.yellow, UIColor.purple ]
         confettiView.intensity = 1.0
         confettiView.startConfetti()
+    
+        perform(#selector(stopConfetti), with: self, afterDelay: 2)
         
-        perform(#selector(stopConfetti), with: self, afterDelay: 3)
-        
-        
+        alertForCompletion()
     }
+    
     func stopConfetti () {
         confettiView.stopConfetti()
     }
     
+    //Alert for Snoozing.
+    
+    func alertForSnooze() {
+        let alertController = UIAlertController(title: "Do you need more time?", message: "Add 15 minutes.", preferredStyle: .alert)
+        
+        let okAction = UIAlertAction(title: "OK", style: UIAlertActionStyle.default) {
+            UIAlertAction in
+            
+            //Add 15 minutes to the clock.
+            
+        }
+        let cancelAction = UIAlertAction(title: "Cancel", style: UIAlertActionStyle.cancel) {
+            UIAlertAction in
+            
+        }
+        alertController.addAction(okAction)
+        alertController.addAction(cancelAction)
+        self.present(alertController, animated: true, completion: nil)
+    }
+    
+    //Alert for Task Complete.
+    
+    func alertForCompletion() {
+        let alertController = UIAlertController(title: "Congratulations!!", message: "You finished your task.", preferredStyle: .alert)
+        
+        let okAction = UIAlertAction(title: "OK", style: UIAlertActionStyle.default) {
+            UIAlertAction in
+            
+            //Store data here for data visualization.
+            
+            self.dismiss(animated: true, completion: nil)
+            
+        }
+        alertController.addAction(okAction)
+        self.present(alertController, animated: true, completion: nil)
+    }
 }

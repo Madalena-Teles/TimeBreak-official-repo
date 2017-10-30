@@ -15,7 +15,7 @@ class ViewControllerToDoTask: UIViewController, UITableViewDataSource , UITableV
     
     //MARK: - variables
     var taskTimeToPass = 1800
-    var nameToPass = ""
+    var taskToPass: Task?
     //var taskNameArray: Array<String> = Array()
     //var taskTimeArray: Array<Int> = Array()
     var categoryPassed = Category()
@@ -23,6 +23,7 @@ class ViewControllerToDoTask: UIViewController, UITableViewDataSource , UITableV
     var buttonRow: Int?
     var deleteTaskIndexPath:IndexPath?
     var tasks: Array<Task> = []
+    
 
     //MARK: - IBOutlets
     @IBOutlet var tableView: UITableView!
@@ -42,6 +43,10 @@ class ViewControllerToDoTask: UIViewController, UITableViewDataSource , UITableV
         formatter.dateFormat = "EEEE, MMM d, yyyy"
         let result = formatter.string(from: date)
         todaysDateLabel.text = result
+        tableView.reloadData()
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
         tableView.reloadData()
     }
 
@@ -75,13 +80,15 @@ class ViewControllerToDoTask: UIViewController, UITableViewDataSource , UITableV
         self.buttonRow = sender.tag
         let timerVC = storyboard?.instantiateViewController(withIdentifier: "timerVC") as! ViewControllerTimer
         timerVC.taskName = tasks[buttonRow!].name!
-        timerVC.chosenTimeInterval = Int(tasks[buttonRow!].time)
+        timerVC.chosenTimeInterval = Int(tasks[buttonRow!].timeInSeconds)
         self.present(timerVC, animated:true, completion:nil)
     }
     
+    //Did Select Row.
+    
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         self.buttonRow = tableView.indexPathForSelectedRow?.row
-        nameToPass = tasks[indexPath.row].name!
+        taskToPass = tasks[indexPath.row]
         performSegue(withIdentifier: "editTask", sender: self)
     }
     
@@ -101,7 +108,6 @@ class ViewControllerToDoTask: UIViewController, UITableViewDataSource , UITableV
             } catch {
                 print("error: \(error)")
             }
-
         }
     }
     
@@ -128,7 +134,6 @@ class ViewControllerToDoTask: UIViewController, UITableViewDataSource , UITableV
         deleteTaskIndexPath = nil
     }
 
-    
     //MARK: - Delegate Methods
     //func userDidEnterTaskName(taskName: String) {
         //tasks.append(taskName)
@@ -144,6 +149,10 @@ class ViewControllerToDoTask: UIViewController, UITableViewDataSource , UITableV
         dismiss(animated: false, completion: nil)
     }
     
+    @IBAction func logoTapped(_ sender: UIButton) {
+        self.presentingViewController!.presentingViewController!.dismiss(animated:true, completion: nil)
+    }
+    
     @IBAction func AddTaskButtonTapped(_ sender: UIButton) {
 //        performSegue(withIdentifier: "addTaskButton", sender: self)
 
@@ -156,21 +165,25 @@ class ViewControllerToDoTask: UIViewController, UITableViewDataSource , UITableV
             //let destViewController = segue.destination as! ViewControllerAddTask
             //destViewController.delegate = self
         //}
-        if (segue.identifier == "timerIcon"){
+        
+        if segue.identifier == "editTask" {
+            let destViewController = segue.destination as! ViewControllerAddTask
+            //            destViewController.delegate = self
+            
+            destViewController.passedTask = taskToPass
+            
+        }
+    
+        if segue.identifier == "timerIcon" {
             let destViewController = segue.destination as! ViewControllerTimer
             if buttonRow != nil {
                 let selectedTask = tasks[buttonRow!].name!
                 destViewController.taskName = selectedTask
                 let selectedTimeInterval = timeValueArray[buttonRow!]
                 destViewController.chosenTimeInterval = selectedTimeInterval
-        }
-        //if (segue.identifier == "editTask"){
-            //let destViewController = segue.destination as! ViewControllerAddTask
-            //destViewController.delegate = self
-            //}
+            }
         }
     }
-
 
 override func viewWillAppear(_ animated: Bool) {
     super.viewWillAppear(false)

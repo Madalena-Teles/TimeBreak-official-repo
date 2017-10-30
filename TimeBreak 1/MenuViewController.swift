@@ -35,16 +35,6 @@ class MenuViewController: UIViewController {
         
         self.present(vc, animated: false, completion: nil)
         
-        
-//        let vc =
-//            storyboard?.instantiateInitialViewController() as! InfoViewController
-//        vc.view.backgroundColor = .clear
-//        vc.modalPresentationStyle = .overCurrentContext
-//        
-//        self.present(vc, animated: true, completion: nil)
-        
-//        MenuViewController.presentViewController(vc, animated: true, completion: nil)
-        
     }
     /*
     // MARK: - Navigation
