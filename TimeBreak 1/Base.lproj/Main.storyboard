@@ -49,7 +49,7 @@
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="0.21122588087248323" colorSpace="calibratedRGB"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="categoryCell" rowHeight="53" id="l3v-JE-pPv" customClass="CategoryTableViewCell" customModule="TimeBreak_1" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="28" width="338" height="53"/>
+                                        <rect key="frame" x="0.0" y="28" width="337" height="53"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="l3v-JE-pPv" id="82u-D6-hmQ">
                                             <rect key="frame" x="0.0" y="0.0" width="304.5" height="52.5"/>
@@ -189,10 +189,10 @@
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="0.2112258809" colorSpace="calibratedRGB"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="toDoCell" rowHeight="73" id="1r6-Xk-A4R" customClass="TaskTableViewCell" customModule="TimeBreak_1" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="28" width="338" height="73"/>
+                                        <rect key="frame" x="0.0" y="28" width="337" height="73"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="1r6-Xk-A4R" id="QSD-MA-Tb6">
-                                            <rect key="frame" x="0.0" y="0.0" width="338" height="72"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="337.5" height="72.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6yu-SI-CV7">
@@ -427,12 +427,12 @@
                                 <rect key="frame" x="-62.5" y="-73.5" width="500" height="750"/>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Task Name:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UKe-vC-b0l">
-                                <rect key="frame" x="64" y="28.5" width="142.5" height="37"/>
+                                <rect key="frame" x="64" y="13.5" width="142.5" height="37"/>
                                 <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="27"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="My Task" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="yV0-fU-ViI">
-                                <rect key="frame" x="67" y="60.5" width="241" height="30"/>
+                                <rect key="frame" x="67" y="45.5" width="241" height="30"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="30" id="Pa1-ER-SWK"/>
                                     <constraint firstAttribute="width" constant="241" id="Xp1-lu-rIK"/>
@@ -442,17 +442,17 @@
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="TfN-Hx-XUf">
-                                <rect key="frame" x="38" y="110.5" width="300" height="345.5"/>
+                                <rect key="frame" x="38" y="127.5" width="300" height="120"/>
                                 <color key="backgroundColor" white="1" alpha="0.50450922818791943" colorSpace="calibratedWhite"/>
                             </view>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Choose a start date:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qUg-PD-Mz2">
-                                <rect key="frame" x="64" y="110" width="247" height="37"/>
+                                <rect key="frame" x="64" y="90.5" width="247" height="37"/>
                                 <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="27"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="dateAndTime" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="eyu-d5-T4V">
-                                <rect key="frame" x="38" y="147" width="300" height="120"/>
+                                <rect key="frame" x="38" y="127.5" width="300" height="120"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <date key="date" timeIntervalSinceReferenceDate="531086783.40478998">
                                     <!--2017-10-30 20:06:23 +0000-->
@@ -479,13 +479,17 @@
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Time for Completion" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0n2-fd-jHh">
-                                <rect key="frame" x="59.5" y="298" width="256" height="37"/>
+                                <rect key="frame" x="59.5" y="283" width="256" height="37"/>
                                 <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="27"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5W3-uT-vgN">
+                                <rect key="frame" x="37" y="320" width="300" height="121"/>
+                                <color key="backgroundColor" white="1" alpha="0.50949035234899331" colorSpace="calibratedWhite"/>
+                            </view>
                             <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="countDownTimer" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="JDx-8d-cqL">
-                                <rect key="frame" x="37.5" y="335" width="300" height="121"/>
+                                <rect key="frame" x="37.5" y="320" width="300" height="121"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <date key="date" timeIntervalSinceReferenceDate="507071238.80695599">
                                     <!--2017-01-25 21:07:18 +0000-->
@@ -526,31 +530,35 @@
                         <constraints>
                             <constraint firstItem="UKe-vC-b0l" firstAttribute="leading" secondItem="qUg-PD-Mz2" secondAttribute="leading" id="1UH-xm-fhv"/>
                             <constraint firstItem="t88-nh-Ngy" firstAttribute="centerX" secondItem="YCw-g6-cj7" secondAttribute="centerX" id="5EI-4u-SqE"/>
+                            <constraint firstItem="5W3-uT-vgN" firstAttribute="width" secondItem="JDx-8d-cqL" secondAttribute="width" id="6lc-mK-Qj0"/>
                             <constraint firstItem="nRq-0E-UJT" firstAttribute="centerY" secondItem="YCw-g6-cj7" secondAttribute="centerY" multiplier="0.55" id="8la-kW-9Ub"/>
+                            <constraint firstItem="5W3-uT-vgN" firstAttribute="centerY" secondItem="JDx-8d-cqL" secondAttribute="centerY" id="96N-OT-LHr"/>
                             <constraint firstItem="eyu-d5-T4V" firstAttribute="centerX" secondItem="qUg-PD-Mz2" secondAttribute="centerX" id="9i3-eZ-bT6"/>
                             <constraint firstItem="JDx-8d-cqL" firstAttribute="top" secondItem="0n2-fd-jHh" secondAttribute="bottom" id="AaK-Nc-gX6"/>
                             <constraint firstItem="rpn-XM-hGG" firstAttribute="centerX" secondItem="YCw-g6-cj7" secondAttribute="centerX" id="D5n-QZ-dK6"/>
                             <constraint firstItem="JDx-8d-cqL" firstAttribute="height" secondItem="YCw-g6-cj7" secondAttribute="height" multiplier="0.2" id="E6P-QL-1iM"/>
+                            <constraint firstItem="5W3-uT-vgN" firstAttribute="height" secondItem="JDx-8d-cqL" secondAttribute="height" id="HeV-1e-w30"/>
                             <constraint firstItem="p5T-bm-LSX" firstAttribute="centerX" secondItem="YCw-g6-cj7" secondAttribute="centerX" id="LeC-lw-hFV"/>
-                            <constraint firstItem="qUg-PD-Mz2" firstAttribute="top" secondItem="yV0-fU-ViI" secondAttribute="bottom" constant="20" id="LfE-Te-K3W"/>
+                            <constraint firstItem="qUg-PD-Mz2" firstAttribute="top" secondItem="yV0-fU-ViI" secondAttribute="bottom" constant="15" id="LfE-Te-K3W"/>
                             <constraint firstItem="JDx-8d-cqL" firstAttribute="width" secondItem="YCw-g6-cj7" secondAttribute="width" multiplier="0.8" id="UnN-qw-urW"/>
                             <constraint firstItem="p5T-bm-LSX" firstAttribute="centerY" secondItem="YCw-g6-cj7" secondAttribute="centerY" multiplier="1.65" id="XB7-p9-dbs"/>
-                            <constraint firstItem="0n2-fd-jHh" firstAttribute="centerY" secondItem="YCw-g6-cj7" secondAttribute="centerY" multiplier="1.05" id="XfD-C9-iOz"/>
+                            <constraint firstItem="0n2-fd-jHh" firstAttribute="centerY" secondItem="YCw-g6-cj7" secondAttribute="centerY" id="XfD-C9-iOz"/>
                             <constraint firstItem="rrC-vd-h39" firstAttribute="centerX" secondItem="YCw-g6-cj7" secondAttribute="centerX" id="Yh4-U4-eRQ"/>
+                            <constraint firstItem="5W3-uT-vgN" firstAttribute="centerX" secondItem="JDx-8d-cqL" secondAttribute="centerX" id="bz9-9H-1yO"/>
                             <constraint firstItem="eyu-d5-T4V" firstAttribute="top" secondItem="qUg-PD-Mz2" secondAttribute="bottom" id="d35-66-dBh"/>
                             <constraint firstItem="qUg-PD-Mz2" firstAttribute="centerX" secondItem="yV0-fU-ViI" secondAttribute="centerX" id="eAh-IA-x2q"/>
                             <constraint firstItem="rpn-XM-hGG" firstAttribute="centerY" secondItem="YCw-g6-cj7" secondAttribute="centerY" id="ejK-CQ-x7q"/>
+                            <constraint firstItem="TfN-Hx-XUf" firstAttribute="centerY" secondItem="eyu-d5-T4V" secondAttribute="centerY" id="gPY-0g-Ovb"/>
                             <constraint firstItem="yV0-fU-ViI" firstAttribute="centerX" secondItem="YCw-g6-cj7" secondAttribute="centerX" id="gab-jX-Xxs"/>
-                            <constraint firstItem="TfN-Hx-XUf" firstAttribute="width" secondItem="eyu-d5-T4V" secondAttribute="width" id="hSD-s5-UHl"/>
+                            <constraint firstItem="TfN-Hx-XUf" firstAttribute="centerX" secondItem="eyu-d5-T4V" secondAttribute="centerX" id="geE-L2-RLk"/>
+                            <constraint firstItem="TfN-Hx-XUf" firstAttribute="height" secondItem="eyu-d5-T4V" secondAttribute="height" id="hN9-t8-Xrm"/>
                             <constraint firstItem="0n2-fd-jHh" firstAttribute="centerX" secondItem="YCw-g6-cj7" secondAttribute="centerX" id="i8e-Aq-irn"/>
                             <constraint firstItem="UKe-vC-b0l" firstAttribute="bottom" secondItem="yV0-fU-ViI" secondAttribute="top" constant="5" id="kXZ-X6-fPl"/>
                             <constraint firstItem="nRq-0E-UJT" firstAttribute="centerX" secondItem="YCw-g6-cj7" secondAttribute="centerX" id="kkp-yy-dbf"/>
                             <constraint firstItem="eyu-d5-T4V" firstAttribute="height" secondItem="YCw-g6-cj7" secondAttribute="height" multiplier="0.2" id="ms2-TX-tJJ"/>
-                            <constraint firstItem="TfN-Hx-XUf" firstAttribute="top" secondItem="qUg-PD-Mz2" secondAttribute="top" id="oKm-nV-PRo"/>
-                            <constraint firstItem="TfN-Hx-XUf" firstAttribute="bottom" secondItem="JDx-8d-cqL" secondAttribute="bottom" id="p9a-Ti-x60"/>
-                            <constraint firstItem="TfN-Hx-XUf" firstAttribute="centerX" secondItem="eyu-d5-T4V" secondAttribute="centerX" id="pLX-17-dH0"/>
+                            <constraint firstItem="TfN-Hx-XUf" firstAttribute="width" secondItem="eyu-d5-T4V" secondAttribute="width" id="shh-M6-mw2"/>
                             <constraint firstItem="rrC-vd-h39" firstAttribute="centerY" secondItem="YCw-g6-cj7" secondAttribute="centerY" multiplier="0.75" id="tzr-Zs-BWS"/>
-                            <constraint firstItem="yV0-fU-ViI" firstAttribute="centerY" secondItem="YCw-g6-cj7" secondAttribute="centerY" multiplier="0.25" id="uce-Sq-zEb"/>
+                            <constraint firstItem="yV0-fU-ViI" firstAttribute="centerY" secondItem="YCw-g6-cj7" secondAttribute="centerY" multiplier="0.2" id="uce-Sq-zEb"/>
                             <constraint firstItem="eyu-d5-T4V" firstAttribute="width" secondItem="YCw-g6-cj7" secondAttribute="width" multiplier="0.8" id="xmC-Pi-3ow"/>
                             <constraint firstItem="t88-nh-Ngy" firstAttribute="centerY" secondItem="YCw-g6-cj7" secondAttribute="centerY" multiplier="1.8" id="zGU-6c-ujP"/>
                             <constraint firstItem="JDx-8d-cqL" firstAttribute="centerX" secondItem="YCw-g6-cj7" secondAttribute="centerX" id="zgG-SG-BTE"/>
@@ -577,6 +585,7 @@
                         <outlet property="StartingDateOfTaskTextField" destination="nRq-0E-UJT" id="vMC-9h-FLe"/>
                         <outlet property="TimeForCompletionLabel" destination="0n2-fd-jHh" id="njC-OS-Asr"/>
                         <outlet property="datePicker" destination="JDx-8d-cqL" id="vts-5j-P3d"/>
+                        <outlet property="durationPicker" destination="5W3-uT-vgN" id="YT3-4O-8f1"/>
                         <outlet property="startDatePicker" destination="eyu-d5-T4V" id="VPt-be-IBD"/>
                         <outlet property="startPickerBackground" destination="TfN-Hx-XUf" id="iXh-aK-FrH"/>
                     </connections>

@@ -17,7 +17,6 @@ class ViewControllerAddTask: UIViewController {
     //var delegate: DataSentDelegate?
     
     var passedTask: Task?
-    
     @IBOutlet var myTaskTextField: UITextField!
     @IBOutlet weak var startDatePicker: UIDatePicker!
     @IBOutlet var datePicker: UIDatePicker!
@@ -28,6 +27,7 @@ class ViewControllerAddTask: UIViewController {
     
     @IBOutlet weak var startPickerBackground: UIView!
     
+    @IBOutlet weak var durationPicker: UIView!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -52,23 +52,24 @@ class ViewControllerAddTask: UIViewController {
     func prepareUI() {
         startPickerBackground.layer.cornerRadius = 10
 
-        let whiteColor = UIColor(red: 255.0/255.0, green: 255.0/255.0, blue: 250.0/255.0, alpha: 0.5 )
+//        let whiteColor = UIColor(red: 255.0/255.0, green: 255.0/255.0, blue: 250.0/255.0, alpha: 0.5 )
         
-        startDatePicker.layer.backgroundColor = whiteColor.cgColor
+//        startDatePicker.layer.backgroundColor = whiteColor.cgColor
     
+        startPickerBackground.layer.cornerRadius = 10
+        
         startDatePicker.layer.cornerRadius = 10
+        durationPicker.layer.cornerRadius = 10
         
     }
     
     //MARK: - UI Controls
     
     @IBAction func AddTaskButtonTapped(_ sender: UIButton) {
-        if myTaskTextField.text != "" && StartingDateOfTaskTextField.text != "" {
-            
+        if myTaskTextField.text != "" {
             if passedTask != nil {
                 deleteEditedTask(task:passedTask!)
             }
-            
             let newTask = Task(context: CoreDataStack.shared.context)
             newTask.name = myTaskTextField.text!
             
@@ -82,6 +83,8 @@ class ViewControllerAddTask: UIViewController {
             
             newTask.timeInSeconds = Int64(secondsTimeInterval)
             newTask.startDate = startDatePicker.date as NSDate
+            newTask.completed = false
+            
             
             CoreDataStack.shared.saveContext() // data was saved
             

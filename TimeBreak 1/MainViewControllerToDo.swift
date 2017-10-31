@@ -116,22 +116,28 @@ class MainViewControllerToDo: UIViewController, UITableViewDataSource , UITableV
     
     // MARK: - IBActions
     @IBAction func AddCategoryButtonTapped(_ sender: UIButton) {
-        let alert = UIAlertController(title: "Add Category", message: "Here you can type the name of your category.", preferredStyle: UIAlertControllerStyle.alert)
-        alert.addTextField { (textField) in
-            textField.text = ""
-        alert.addAction(UIAlertAction(title: "Add", style: .default, handler: { [weak alert] (_) in
-            let textField = alert!.textFields![0] // Force unwrapping because we know it exists.
-            if textField.text != "" {
-                self.categoryArray.append(textField.text!)
-                let newCategory = Category(context: CoreDataStack.shared.context)
-                newCategory.name = textField.text!
-                CoreDataStack.shared.saveContext() // data was saved
-                self.getData()
-            }
-            self.tableView.reloadData() 
-        }))
-            alert.addAction(UIAlertAction(title: "Cancel", style: .default, handler: nil))
+        if categories.count > 0 {
+            let alert = UIAlertController(title: "TimeBreak doesn't yet support multiple categories at this time.", message: "Multiple categories coming soon!", preferredStyle: UIAlertControllerStyle.alert)
+            alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: nil))
             self.present(alert, animated: true, completion: nil)
+        } else {
+            let alert = UIAlertController(title: "Add Category", message: "Here you can type the name of your category.", preferredStyle: UIAlertControllerStyle.alert)
+            alert.addTextField { (textField) in
+                textField.text = ""
+            alert.addAction(UIAlertAction(title: "Add", style: .default, handler: { [weak alert] (_) in
+                let textField = alert!.textFields![0] // Force unwrapping because we know it exists.
+                if textField.text != "" {
+                    self.categoryArray.append(textField.text!)
+                    let newCategory = Category(context: CoreDataStack.shared.context)
+                    newCategory.name = textField.text!
+                    CoreDataStack.shared.saveContext() // data was saved
+                    self.getData()
+                }
+                self.tableView.reloadData() 
+            }))
+                alert.addAction(UIAlertAction(title: "Cancel", style: .default, handler: nil))
+                self.present(alert, animated: true, completion: nil)
+            }
         }
     } ///
 
