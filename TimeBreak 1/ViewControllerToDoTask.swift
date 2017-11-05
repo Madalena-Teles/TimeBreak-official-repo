@@ -49,6 +49,12 @@ class ViewControllerToDoTask: UIViewController, UITableViewDataSource , UITableV
     override func viewDidAppear(_ animated: Bool) {
         tableView.reloadData()
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(false)
+        getData()
+        self.tableView.reloadData()
+    }
 
     func getData(){
         do {
@@ -70,6 +76,10 @@ class ViewControllerToDoTask: UIViewController, UITableViewDataSource , UITableV
             let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for:
                 indexPath as IndexPath) as! TaskTableViewCell
             let task = tasks[indexPath.row]
+            if task.completed == true {
+                cell.taskLabel.textColor = UIColor.gray
+                cell.timerButton.isEnabled = false
+            }
             cell.taskLabel?.text = task.name
             cell.timerButton.tag = indexPath.row
             cell.timerButton.addTarget(self, action: #selector(self.timerButtonTapped), for: .touchUpInside)
@@ -79,6 +89,7 @@ class ViewControllerToDoTask: UIViewController, UITableViewDataSource , UITableV
     func timerButtonTapped(sender:UIButton) {
         self.buttonRow = sender.tag
         let timerVC = storyboard?.instantiateViewController(withIdentifier: "timerVC") as! ViewControllerTimer
+        timerVC.passedRow = self.buttonRow
         timerVC.taskName = tasks[buttonRow!].name!
         timerVC.chosenTimeInterval = Int(tasks[buttonRow!].timeInSeconds)
         self.present(timerVC, animated:true, completion:nil)
@@ -100,7 +111,7 @@ class ViewControllerToDoTask: UIViewController, UITableViewDataSource , UITableV
             self.confirmDelete(task: taskToDelete)
             let context: NSManagedObjectContext = CoreDataStack.shared.context
             let index = indexPath.row
-            context.delete(tasks[index] as NSManagedObject) // deleting from context specific thing from tasks array
+            context.delete(tasks[index] as NSManagedObject) // deleting from context specific thing from tasks array            
             let _ : NSError! = nil
             do {
                 try context.save()
@@ -184,12 +195,6 @@ class ViewControllerToDoTask: UIViewController, UITableViewDataSource , UITableV
             }
         }
     }
-
-override func viewWillAppear(_ animated: Bool) {
-    super.viewWillAppear(false)
-    getData()
-    self.tableView.reloadData()
-}
 }
 
 extension Task {

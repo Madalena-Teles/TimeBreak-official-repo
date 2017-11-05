@@ -12,6 +12,8 @@ import SAConfettiView
 
 class ViewControllerTimer: UIViewController {
     
+    var tasks: Array<Task> = []
+    var passedRow: Int?
     var taskName = ""
     var timeForTask = 0
     var seconds = 60
@@ -38,6 +40,26 @@ class ViewControllerTimer: UIViewController {
         
         snoozeButton.isEnabled = false
         endButton.isEnabled = false
+        
+        getData()
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        
+        let task = tasks[passedRow!]
+        
+        task.setValue(Int64(self.chosenTimeInterval), forKey: "timeInSeconds")
+        CoreDataStack.shared.saveContext()
+    }
+    
+    
+    func getData(){
+        do {
+            tasks = try CoreDataStack.shared.context.fetch(Task.fetch) //TO DO: fix fetch issue
+        }
+        catch { //TO DO: add an alert for the error
+            print("Error fetching tasks")
+        }
     }
     
     //MARK: - UI Preparation
@@ -85,7 +107,7 @@ class ViewControllerTimer: UIViewController {
     }
     
     func addAdditionalTime(alertAction: UIAlertAction!) {
-        seconds = 960
+        seconds = 900
         timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: (#selector(ViewControllerTimer.updateTimer)), userInfo: nil, repeats: true)
         isTimerRunning = true
     }
@@ -121,7 +143,6 @@ class ViewControllerTimer: UIViewController {
     
     @IBAction func snoozeButtonTapped(_ sender: UIButton) {
         alertForSnooze()
-        
         if self .resumeTapped == false {
             timer.invalidate()
             self.resumeTapped = true
@@ -134,12 +155,12 @@ class ViewControllerTimer: UIViewController {
     @IBAction func endButtonTapped(_ sender: UIButton) {
         taskFinished(alertAction: nil)
         timer.invalidate()
-
     }
     
     @IBAction func BackButtonTapped(_ sender: UIButton) {
         dismiss(animated: false, completion: nil)
         confettiView.stopConfetti()
+        
     }
     
     func taskFinished (alertAction: UIAlertAction!) {
@@ -149,7 +170,7 @@ class ViewControllerTimer: UIViewController {
         confettiView.colors = [UIColor.red, UIColor.green, UIColor.blue, UIColor.yellow, UIColor.purple ]
         confettiView.intensity = 1.0
         confettiView.startConfetti()
-    
+        
         perform(#selector(stopConfetti), with: self, afterDelay: 2)
         
         alertForCompletion()
@@ -159,6 +180,8 @@ class ViewControllerTimer: UIViewController {
         confettiView.stopConfetti()
     }
     
+    //MARK: - Alerts
+    
     //Alert for Snoozing.
     
     func alertForSnooze() {
@@ -167,8 +190,9 @@ class ViewControllerTimer: UIViewController {
         let okAction = UIAlertAction(title: "OK", style: UIAlertActionStyle.default) {
             UIAlertAction in
             
-            //Add 15 minutes to the clock.
-            
+            self.chosenTimeInterval = self.chosenTimeInterval + 900
+
+            self.runTimer()
         }
         let cancelAction = UIAlertAction(title: "Cancel", style: UIAlertActionStyle.cancel) {
             UIAlertAction in
@@ -187,7 +211,11 @@ class ViewControllerTimer: UIViewController {
         let okAction = UIAlertAction(title: "OK", style: UIAlertActionStyle.default) {
             UIAlertAction in
             
-            //Store data here for data visualization.
+//            let task = Task(context: CoreDataStack.shared.context.se
+            
+            let task = self.tasks[self.passedRow!]
+            
+            task.setValue(true, forKey: "completed")
             
             self.dismiss(animated: true, completion: nil)
             
