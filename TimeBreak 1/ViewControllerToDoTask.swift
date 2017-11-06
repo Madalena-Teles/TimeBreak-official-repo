@@ -108,15 +108,13 @@ class ViewControllerToDoTask: UIViewController, UITableViewDataSource , UITableV
             deleteTaskIndexPath = indexPath //Here we assign the variable from step one to contain the value of the cell we want to delete.
             let taskToDelete = tasks[indexPath.row]
             self.confirmDelete(task: taskToDelete, index:indexPath.row)
-            
-            
-            
-            
+   
         }
 
-           }
+    }
     
-    func deleteFromContext(index:Int, alertAction: UIAlertAction!) -> Void {
+    //func deleteFromContext(index:Int, alertAction: UIAlertAction!) -> Void {
+    func deleteFromContext(index:Int) {
         let context: NSManagedObjectContext = CoreDataStack.shared.context
         context.delete(tasks[index] as NSManagedObject) // deleting from context specific thing from tasks array
         let _ : NSError! = nil
@@ -142,8 +140,12 @@ class ViewControllerToDoTask: UIViewController, UITableViewDataSource , UITableV
     
     func confirmDelete(task: Task, index: Int) {
         let alert = UIAlertController(title: "Delete category", message: "Are you sure you want to permanently delete this task?", preferredStyle: .actionSheet)
-        let DeleteAction = UIAlertAction(title: "Delete", style: .destructive) {actio
-        let DeleteAction = UIAlertAction(title: "Delete", style: .destructive, handler:self.deleteFromContext(index:index, alertAction: <#UIAlertAction!#>))
+        let DeleteAction = UIAlertAction(title: "Delete", style: .destructive) { action in
+            self.deleteFromContext(index: index)
+        }
+        
+            
+        //let DeleteAction = UIAlertAction(title: "Delete", style: .destructive, handler:self.deleteFromContext(index:index, alertAction: <#UIAlertAction!#>))
         let CancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
         alert.addAction(DeleteAction)
         alert.addAction(CancelAction)
@@ -176,7 +178,7 @@ class ViewControllerToDoTask: UIViewController, UITableViewDataSource , UITableV
     }
     
     @IBAction func AddTaskButtonTapped(_ sender: UIButton) {
-//        performSegue(withIdentifier: "addTaskButton", sender: self)
+
 
     }
 

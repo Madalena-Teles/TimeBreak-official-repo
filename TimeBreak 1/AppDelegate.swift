@@ -77,8 +77,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UIGestureRecognizerDelega
         let center = UNUserNotificationCenter.current()
         center.removeAllDeliveredNotifications()
         center.removeAllPendingNotificationRequests()
-        //        application.applicationIconBadgeNumber = 0
-        //        application.cancelAllLocalNotifications()
+
     }
     
     func applicationWillTerminate(_ application: UIApplication) {
