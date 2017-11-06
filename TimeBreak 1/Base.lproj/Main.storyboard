@@ -49,10 +49,10 @@
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="0.21122588087248323" colorSpace="calibratedRGB"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="categoryCell" rowHeight="53" id="l3v-JE-pPv" customClass="CategoryTableViewCell" customModule="TimeBreak_1" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="28" width="338" height="53"/>
+                                        <rect key="frame" x="0.0" y="28" width="337" height="53"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="l3v-JE-pPv" id="82u-D6-hmQ">
-                                            <rect key="frame" x="0.0" y="0.0" width="304.5" height="52.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="304" height="53"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SOC-ox-LvX">
@@ -204,7 +204,7 @@
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="0.2112258809" colorSpace="calibratedRGB"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="toDoCell" rowHeight="73" id="1r6-Xk-A4R" customClass="TaskTableViewCell" customModule="TimeBreak_1" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="28" width="338" height="73"/>
+                                        <rect key="frame" x="0.0" y="28" width="337" height="73"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="1r6-Xk-A4R" id="QSD-MA-Tb6">
                                             <rect key="frame" x="0.0" y="0.0" width="337.5" height="72.5"/>
@@ -1049,6 +1049,20 @@ Trash can by Aya Sofya.</string>
                                     <action selector="endButtonTapped:" destination="dyK-Nr-ay1" eventType="touchUpInside" id="Jrl-Rs-mkF"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="V2F-EJ-xnr">
+                                <rect key="frame" x="137.5" y="412" width="101" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="101" id="7Ch-GB-M0y"/>
+                                    <constraint firstAttribute="height" constant="30" id="wDH-Zm-tC0"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="AvenirNext-Bold" family="Avenir Next" pointSize="19"/>
+                                <state key="normal" title="Pause">
+                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <connections>
+                                    <action selector="pauseButtonTapped:" destination="dyK-Nr-ay1" eventType="touchUpInside" id="clA-xH-0Jc"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="0.33946484329999999" green="0.75767415760000001" blue="0.63569325210000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
@@ -1056,6 +1070,7 @@ Trash can by Aya Sofya.</string>
                             <constraint firstItem="IJS-oU-UMe" firstAttribute="centerY" secondItem="86O-AJ-gyr" secondAttribute="centerY" id="8xO-Qg-8LX"/>
                             <constraint firstItem="LQD-nh-4DK" firstAttribute="top" secondItem="86O-AJ-gyr" secondAttribute="top" id="9Bq-V1-RLz"/>
                             <constraint firstItem="N9h-04-mcz" firstAttribute="height" secondItem="86O-AJ-gyr" secondAttribute="height" multiplier="0.075" id="CeM-1p-1SC"/>
+                            <constraint firstItem="V2F-EJ-xnr" firstAttribute="top" secondItem="WZw-v0-hxd" secondAttribute="bottom" constant="20" id="EyV-RM-U7L"/>
                             <constraint firstItem="LQD-nh-4DK" firstAttribute="trailing" secondItem="86O-AJ-gyr" secondAttribute="trailing" id="GZR-c5-fEb"/>
                             <constraint firstItem="WZw-v0-hxd" firstAttribute="height" secondItem="86O-AJ-gyr" secondAttribute="height" multiplier="0.075" id="Ibh-OV-XJX"/>
                             <constraint firstItem="WZw-v0-hxd" firstAttribute="centerY" secondItem="86O-AJ-gyr" secondAttribute="centerY" multiplier="1.1" id="M3C-lS-qRb"/>
@@ -1063,6 +1078,7 @@ Trash can by Aya Sofya.</string>
                             <constraint firstItem="N9h-04-mcz" firstAttribute="centerX" secondItem="86O-AJ-gyr" secondAttribute="centerX" multiplier="0.35" id="dIW-6c-0Tk"/>
                             <constraint firstItem="JXB-GC-oOm" firstAttribute="centerY" secondItem="86O-AJ-gyr" secondAttribute="centerY" multiplier="1.1" id="dqF-B1-qDa"/>
                             <constraint firstItem="JXB-GC-oOm" firstAttribute="height" secondItem="86O-AJ-gyr" secondAttribute="height" multiplier="0.075" id="e4a-CR-xTQ"/>
+                            <constraint firstItem="V2F-EJ-xnr" firstAttribute="centerX" secondItem="WZw-v0-hxd" secondAttribute="centerX" id="fW6-3G-9Ti"/>
                             <constraint firstItem="Rco-In-8G8" firstAttribute="centerX" secondItem="86O-AJ-gyr" secondAttribute="centerX" id="fnV-ux-lV6"/>
                             <constraint firstItem="IJS-oU-UMe" firstAttribute="centerX" secondItem="86O-AJ-gyr" secondAttribute="centerX" id="iBh-M5-KqG"/>
                             <constraint firstItem="WZw-v0-hxd" firstAttribute="centerX" secondItem="86O-AJ-gyr" secondAttribute="centerX" id="jv4-8V-j6s"/>
@@ -1078,6 +1094,7 @@ Trash can by Aya Sofya.</string>
                     <connections>
                         <outlet property="CountDownTimerLabel" destination="Rco-In-8G8" id="CdY-En-mwN"/>
                         <outlet property="endButton" destination="JXB-GC-oOm" id="eVR-hD-U6w"/>
+                        <outlet property="pauseButton" destination="V2F-EJ-xnr" id="Oen-Vu-urj"/>
                         <outlet property="snoozeButton" destination="WZw-v0-hxd" id="NUs-J7-ZQq"/>
                         <outlet property="startButton" destination="N9h-04-mcz" id="45p-Ri-v1H"/>
                         <outlet property="taskLabel" destination="xeD-7V-HDG" id="08P-x3-dHv"/>

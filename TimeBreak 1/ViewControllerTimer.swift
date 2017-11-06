@@ -23,13 +23,14 @@ class ViewControllerTimer: UIViewController {
     var resumeTapped = false
     var chosenTimeInterval: Int = 0 //This is now chosen Time Interval an integer value!
     var confettiView = SAConfettiView()
-
+    var isPaused: Bool = false
     
     @IBOutlet var taskLabel: UILabel!
     @IBOutlet var CountDownTimerLabel: UILabel!
     @IBOutlet var startButton: UIButton!
     @IBOutlet var snoozeButton: UIButton!
     @IBOutlet var endButton: UIButton!
+    @IBOutlet weak var pauseButton: UIButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -41,6 +42,7 @@ class ViewControllerTimer: UIViewController {
         
         snoozeButton.isEnabled = false
         endButton.isEnabled = false
+        pauseButton.isEnabled = false
         
         UNUserNotificationCenter.current().delegate = self
         
@@ -141,6 +143,7 @@ class ViewControllerTimer: UIViewController {
     @IBAction func StartButtonTapped(_ sender: UIButton) {
         snoozeButton.isEnabled = true
         endButton.isEnabled = true
+        pauseButton.isEnabled = true
         
         if isTimerRunning == false {
             runTimer(isTimerRunning = true)
@@ -162,6 +165,16 @@ class ViewControllerTimer: UIViewController {
     @IBAction func endButtonTapped(_ sender: UIButton) {
         taskFinished(alertAction: nil)
         timer.invalidate()
+    }
+    
+    @IBAction func pauseButtonTapped(_ sender: UIButton) {
+        if isPaused == false {
+            timer.invalidate()
+            isPaused = true
+        } else {
+            runTimer()
+            isPaused = false
+        }
     }
     
     @IBAction func BackButtonTapped(_ sender: UIButton) {
