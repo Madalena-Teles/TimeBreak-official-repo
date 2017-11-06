@@ -76,15 +76,60 @@ class ViewControllerToDoTask: UIViewController, UITableViewDataSource , UITableV
             let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for:
                 indexPath as IndexPath) as! TaskTableViewCell
             let task = tasks[indexPath.row]
+            getData()
             if task.completed == true {
                 cell.taskLabel.textColor = UIColor.gray
                 cell.timerButton.isEnabled = false
+                cell.selectionStyle = UITableViewCellSelectionStyle.none
+//                cell.isUserInteractionEnabled = false
             }
             cell.taskLabel?.text = task.name
             cell.timerButton.tag = indexPath.row
             cell.timerButton.addTarget(self, action: #selector(self.timerButtonTapped), for: .touchUpInside)
             return cell
     }
+    
+    //Did Select Row.
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        getData()
+        self.buttonRow = tableView.indexPathForSelectedRow?.row
+        taskToPass = tasks[indexPath.row]
+        if taskToPass?.completed == true {
+            //Do nothing.
+        } else {
+           performSegue(withIdentifier: "editTask", sender: self)
+        }
+        
+    }
+    
+    // MARK: - TableView Deleting task Methods
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == .delete {
+            deleteTaskIndexPath = indexPath //Here we assign the variable from step one to contain the value of the cell we want to delete.
+            let taskToDelete = tasks[indexPath.row]
+            self.confirmDelete(task: taskToDelete, index:indexPath.row)
+            
+            
+            
+            
+        }
+
+           }
+    
+    func deleteFromContext(index:Int, alertAction: UIAlertAction!) -> Void {
+        let context: NSManagedObjectContext = CoreDataStack.shared.context
+        context.delete(tasks[index] as NSManagedObject) // deleting from context specific thing from tasks array
+        let _ : NSError! = nil
+        do {
+            try context.save()
+            getData()
+            self.tableView.reloadData()
+        } catch {
+            print("error: \(error)")
+        }
+    }
+    
+    //MARK: - Helper Methods
     
     func timerButtonTapped(sender:UIButton) {
         self.buttonRow = sender.tag
@@ -95,67 +140,33 @@ class ViewControllerToDoTask: UIViewController, UITableViewDataSource , UITableV
         self.present(timerVC, animated:true, completion:nil)
     }
     
-    //Did Select Row.
-    
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        self.buttonRow = tableView.indexPathForSelectedRow?.row
-        taskToPass = tasks[indexPath.row]
-        performSegue(withIdentifier: "editTask", sender: self)
-    }
-    
-    // MARK: - TableView Deleting task Methods
-    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
-        if editingStyle == .delete {
-            deleteTaskIndexPath = indexPath //Here we assign the variable from step one to contain the value of the cell we want to delete.
-            let taskToDelete = tasks[indexPath.row]
-            self.confirmDelete(task: taskToDelete)
-            let context: NSManagedObjectContext = CoreDataStack.shared.context
-            let index = indexPath.row
-            context.delete(tasks[index] as NSManagedObject) // deleting from context specific thing from tasks array            
-            let _ : NSError! = nil
-            do {
-                try context.save()
-                self.tableView.reloadData()
-            } catch {
-                print("error: \(error)")
-            }
-        }
-    }
-    
-    func confirmDelete(task: Task) {
+    func confirmDelete(task: Task, index: Int) {
         let alert = UIAlertController(title: "Delete category", message: "Are you sure you want to permanently delete this task?", preferredStyle: .actionSheet)
-        let DeleteAction = UIAlertAction(title: "Delete", style: .destructive, handler: self.handleDeleteTask)
-        let CancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: self.handleDeleteTask)
+        let DeleteAction = UIAlertAction(title: "Delete", style: .destructive) {actio
+        let DeleteAction = UIAlertAction(title: "Delete", style: .destructive, handler:self.deleteFromContext(index:index, alertAction: <#UIAlertAction!#>))
+        let CancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
         alert.addAction(DeleteAction)
         alert.addAction(CancelAction)
         self.present(alert, animated: true, completion: nil)
     }
     
-    func handleDeleteTask(alertAction: UIAlertAction!) -> Void {
-        if let indexPath = deleteTaskIndexPath {
-            tableView.beginUpdates()
-            tasks.remove(at: indexPath.row) //It removes the corresponding item from the array here in this line!!!!
-            tableView.deleteRows(at: [indexPath], with: .automatic)
-            deleteTaskIndexPath = nil
-            tableView.endUpdates()
-        }
-    }
+    
+//    func handleDeleteTask(alertAction: UIAlertAction!) -> Void {
+//        if let indexPath = deleteTaskIndexPath {
+//            tableView.beginUpdates()
+//            tasks.remove(at: indexPath.row) //It removes the corresponding item from the array here in this line!!!!
+//            tableView.deleteRows(at: [indexPath], with: .automatic)
+//            deleteTaskIndexPath = nil
+//            tableView.endUpdates()
+//        }
+//    }
     
     func cancelDeleteTask(alertAction: UIAlertAction!) {
         deleteTaskIndexPath = nil
     }
 
-    //MARK: - Delegate Methods
-    //func userDidEnterTaskName(taskName: String) {
-        //tasks.append(taskName)
-        //tableView.reloadData()
-    //}
-    
-    //func userDidEnterChosenTimeInterval(chosenTimeInterval: Int) { //This method is now receiving an integer!!
-        //timeValueArray.append(chosenTimeInterval) //This now sends the seconds(which is an integer) to an array of integers!
-    //}
-    
     //MARK: - Actions
+    
     @IBAction func backButtonTapped(_ sender: Any) {
         dismiss(animated: false, completion: nil)
     }

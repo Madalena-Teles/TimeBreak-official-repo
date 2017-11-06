@@ -15,29 +15,48 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UIGestureRecognizerDelega
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         
+        registerForRichNotifications()
         registerForPushNotifications()
         
+        UIApplication.shared.applicationIconBadgeNumber = 0
         
-//            UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .sound]) {(accepted, error) in
-//                if !accepted {
-//                    print("Notification access denied.")
-//                }
-//            }
+        return true
         
-            return true
+    }
+    
+    func registerForRichNotifications() {
+        
+        UNUserNotificationCenter.current().requestAuthorization(options: [.alert,.badge,.sound]) { (granted:Bool, error:Error?) in
+            if error != nil {
+                print(error?.localizedDescription as Any)
+            }
+            if granted {
+                print("Permission granted")
+            } else {
+                print("Permission not granted")
+            }
+        }
+        
+        //actions defination
+        let action1 = UNNotificationAction(identifier: "action1", title: "Action First", options: [.foreground])
+        let action2 = UNNotificationAction(identifier: "action2", title: "Action Second", options: [.foreground])
+        
+        let category = UNNotificationCategory(identifier: "actionCategory", actions: [action1,action2], intentIdentifiers: [], options: [])
+        
+        UNUserNotificationCenter.current().setNotificationCategories([category])
         
     }
     
     
-    func scheduleNotification(at date: Date) {
-        let calendar = Calendar(identifier: .gregorian)
-        var components = calendar.dateComponents(in: .current, from: date)
-        
-        //HERE IS WHERE WE SET THE HOUR, MINUTE, SECOND OF THE REPEATING NOTIFICATION.
-        components.hour = 9
-        components.minute = 0
-        components.second = 0
-    }
+//    func scheduleNotification(at date: Date) {
+//        let calendar = Calendar(identifier: .gregorian)
+//        var components = calendar.dateComponents(in: .current, from: date)
+//        
+//        //HERE IS WHERE WE SET THE HOUR, MINUTE, SECOND OF THE REPEATING NOTIFICATION.
+//        components.hour = 9
+//        components.minute = 0
+//        components.second = 0
+//    }
     
     
     func applicationWillResignActive(_ application: UIApplication) {

@@ -8,6 +8,7 @@
 
 import UIKit
 import CoreData
+import UserNotifications
 
 class MainViewControllerToDo: UIViewController, UITableViewDataSource , UITableViewDelegate, UIGestureRecognizerDelegate{
     
@@ -179,4 +180,30 @@ extension Category {
     static var fetch: NSFetchRequest<Category> {
         return NSFetchRequest<Category>(entityName: "Category")
     }
+}
+
+extension UIViewController:UNUserNotificationCenterDelegate {
+    
+    //for displaying notification when app is in foreground
+    public func userNotificationCenter(_ center: UNUserNotificationCenter, willPresent notification: UNNotification, withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
+        
+        //If you don't want to show notification when app is open, do something here else and make a return here.
+        //Even you you don't implement this delegate method, you will not see the notification on the specified controller. So, you have to implement this delegate and make sure the below line execute. i.e. completionHandler.
+        
+        completionHandler([.alert,.badge])
+    }
+    
+    // For handling tap and user actions
+    public func userNotificationCenter(_ center: UNUserNotificationCenter, didReceive response: UNNotificationResponse, withCompletionHandler completionHandler: @escaping () -> Void) {
+        switch response.actionIdentifier {
+        case "action1":
+            print("Action First Tapped")
+        case "action2":
+            print("Action Second Tapped")
+        default:
+            break
+        }
+        completionHandler()
+    }
+    
 }

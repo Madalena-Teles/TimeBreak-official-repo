@@ -9,6 +9,7 @@
 import UIKit
 import CoreData
 import SAConfettiView
+import UserNotifications
 
 class ViewControllerTimer: UIViewController {
     
@@ -41,17 +42,22 @@ class ViewControllerTimer: UIViewController {
         snoozeButton.isEnabled = false
         endButton.isEnabled = false
         
+        UNUserNotificationCenter.current().delegate = self
+        
+        
         getData()
     }
     
     override func viewWillDisappear(_ animated: Bool) {
+        getData()
         
         let task = tasks[passedRow!]
         
-        task.setValue(Int64(self.chosenTimeInterval), forKey: "timeInSeconds")
-        CoreDataStack.shared.saveContext()
+        task.setValue(Int64(seconds), forKey: "timeInSeconds")  //Update this to be most recent time interval!!!
+        
+
+//        CoreDataStack.shared.saveContext()
     }
-    
     
     func getData(){
         do {
@@ -91,6 +97,7 @@ class ViewControllerTimer: UIViewController {
     func updateTimer(){
         if seconds < 1 {
             timer.invalidate(timerCompleteAlert())
+            scheduleNotifications()
         } else {
             seconds -= 1
             CountDownTimerLabel.text = timeString(time: TimeInterval(seconds))
@@ -160,10 +167,16 @@ class ViewControllerTimer: UIViewController {
     @IBAction func BackButtonTapped(_ sender: UIButton) {
         dismiss(animated: false, completion: nil)
         confettiView.stopConfetti()
+        getData()
+        
+        let task = tasks[passedRow!]
+        
+        task.setValue(Int64(seconds), forKey: "timeInSeconds")  //Update this to be most recent time interval!!!
         
     }
-    
+
     func taskFinished (alertAction: UIAlertAction!) {
+
         confettiView = SAConfettiView(frame: self.view.bounds)
         self.view.addSubview(confettiView)
         confettiView.type = .Confetti
@@ -211,16 +224,38 @@ class ViewControllerTimer: UIViewController {
         let okAction = UIAlertAction(title: "OK", style: UIAlertActionStyle.default) {
             UIAlertAction in
             
-//            let task = Task(context: CoreDataStack.shared.context.se
-            
             let task = self.tasks[self.passedRow!]
-            
             task.setValue(true, forKey: "completed")
-            
             self.dismiss(animated: true, completion: nil)
             
         }
         alertController.addAction(okAction)
         self.present(alertController, animated: true, completion: nil)
+    }
+    
+    //MARK: Notifications
+    
+    func scheduleNotifications() {
+        
+        let content = UNMutableNotificationContent()
+        let requestIdentifier = "timeUp"
+        
+        content.badge = 1
+        content.title = "TimeBreak Time Up!"
+        content.subtitle = ""
+        content.body = "Did you finish your task?"
+        content.categoryIdentifier = "actionCategory"
+        content.sound = UNNotificationSound.default()
+        
+        let trigger = UNTimeIntervalNotificationTrigger.init(timeInterval: 3.0, repeats: false)
+        
+        let request = UNNotificationRequest(identifier: requestIdentifier, content: content, trigger: trigger)
+        UNUserNotificationCenter.current().add(request) { (error:Error?) in
+            
+            if error != nil {
+                print(error?.localizedDescription as Any)
+            }
+            print("Notification Register Success")
+        }
     }
 }

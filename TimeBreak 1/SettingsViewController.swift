@@ -11,30 +11,29 @@ import MessageUI
 
 class SettingsViewController: UIViewController, MFMailComposeViewControllerDelegate {
 
-    
     @IBOutlet weak var notifsSwitch: UISwitch!
-    
+    var notifsEnabled = true
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
     }
 
-    
-    
     @IBAction func notifsSwitchTapped(_ sender: UISwitch) {
-        
-        //Finish notification settings.
+        if notifsEnabled == true {
+            UIApplication.shared.unregisterForRemoteNotifications()
+            notifsEnabled = false
+            
+        } else {
+            UIApplication.shared.registerForRemoteNotifications()
+            notifsEnabled = true
+        }
     }
     
-    
-
     @IBAction func acknowTapped(_ sender: UIButton) {
         
         
     }
-
-    
 
     @IBAction func contactTapped(_ sender: UIButton) {
         let mailComposeViewController = configuredMailComposeViewController()
