@@ -202,7 +202,7 @@
 				TargetAttributes = {
 					C5EACD461DE4E07600B47342 = {
 						CreatedOnToolsVersion = 7.3.1;
-						DevelopmentTeam = HUSBP9Y42K;
+						DevelopmentTeam = SF4ZQ7FYZ5;
 						LastSwiftMigration = 0810;
 					};
 				};
@@ -424,7 +424,7 @@
 			baseConfigurationReference = 3731024BD552C9B1DA52CBE3 /* Pods-TimeBreak 1.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = HUSBP9Y42K;
+				DEVELOPMENT_TEAM = SF4ZQ7FYZ5;
 				INFOPLIST_FILE = "TimeBreak 1/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = MadalenaTeles.TimeBreak;
@@ -438,7 +438,7 @@
 			baseConfigurationReference = 93B50923B2357D208E6B3ED7 /* Pods-TimeBreak 1.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = HUSBP9Y42K;
+				DEVELOPMENT_TEAM = SF4ZQ7FYZ5;
 				INFOPLIST_FILE = "TimeBreak 1/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = MadalenaTeles.TimeBreak;

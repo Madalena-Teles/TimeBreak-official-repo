@@ -49,10 +49,10 @@
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="0.21122588087248323" colorSpace="calibratedRGB"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="categoryCell" rowHeight="53" id="l3v-JE-pPv" customClass="CategoryTableViewCell" customModule="TimeBreak_1" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="28" width="337" height="53"/>
+                                        <rect key="frame" x="0.0" y="28" width="338" height="53"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="l3v-JE-pPv" id="82u-D6-hmQ">
-                                            <rect key="frame" x="0.0" y="0.0" width="304" height="53"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="304.5" height="52.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SOC-ox-LvX">
@@ -134,7 +134,7 @@
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <subviews>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Add a Category!" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="p24-mj-wpe">
-                                    <rect key="frame" x="-67" y="6" width="197" height="21"/>
+                                    <rect key="frame" x="-24" y="0.0" width="197" height="33"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="26"/>
                                     <nil key="textColor"/>
@@ -204,7 +204,7 @@
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="0.2112258809" colorSpace="calibratedRGB"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="toDoCell" rowHeight="73" id="1r6-Xk-A4R" customClass="TaskTableViewCell" customModule="TimeBreak_1" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="28" width="337" height="73"/>
+                                        <rect key="frame" x="0.0" y="28" width="338" height="73"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="1r6-Xk-A4R" id="QSD-MA-Tb6">
                                             <rect key="frame" x="0.0" y="0.0" width="337.5" height="72.5"/>
